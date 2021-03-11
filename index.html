@@ -1,48 +1,44 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Happy Anime Chat</title>
-        <link rel="stylesheet" href="index.css">
+      <script src="index.js"></script>
+      <title>Happy Anime Chat</title>
+      <link rel="stylesheet" href="index.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     </head>
     <body>
-        <div id="wrapper">
+        <div>
+          <div id="myside" class="container left">
+            <div>
+                <div>
+                    <output></output>
+                
+                </div>
+                <div class="timeStamp">
 
-          <div id="menu">
-            <p class="welcome"><h2>Welcome, Current And Soon To Be Anime-Lovers!</h2></p>
-            <p></p>
-          </div>
-          <div>
-            <IMG SRC="https://tenor.com/view/kakashi-gif-19433121.gif" alt="Anime GIF waving at you">
-          </div>
-          <div id="chatbox"></div>
+                </div>
+            </div>
 
-          <form name="message" action="">
-              <input name="usermsg" type="text" id="usermsg">
-              <input name="submitmsg" type="submit" id="submitmsg">
-          </form>
+          <div id="genre-title"></div>
+
         </div>
 
 
+        <div id="yourside" class="container right">
+            <div id="chat" class="chat">
+                <div id="messages" class="messages"></div>
+                <input id="input" type="text" placeholder="Say something..." autocomplete="off" autofocus="true" />
+            </div>
+                <div class="timeStamp">
 
-        <div id="show types prompt">
-          <h2>Let's find out what kinds of Anime you like!</h2>
-          <section class="genre type">
-            <label for="genre 1">Please enter one type of genre you enjoy into each of the boxes provided.</label>
-            <input type="text" name="genre" id="genre 1">
-            <input type="text" name="genre" id="genre 2">
-            <input type="text" name="genre" id="genre 3">
-          </section>
-          <hr>
-          <section class="episode count">
-            <label for="episode count">Do you prefer long shows with plenty of episodes to watch, or short?</label>
-            <input type="text" name="amount" id="amount">
-          </section>
-          <hr>
-          <section class="language">
-            <label for="language type">Are you willing to watch a show that hasn't been dubbed in english yet?</label>
-            <input type="text" name="language type" id="languege type">
-          </section>
-          <hr>
+                </div>
+                
+                <div><input id="input" type="text" placeholder="..." autocomplete="off"/></div>
+            <button value="Submit" onclick="findAnimeAmongGenre()"></button>
+        </div>">
+            
+
         </div>
 
 

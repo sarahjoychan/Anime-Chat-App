@@ -1,1 +1,78 @@
-bul-box 
+.left {
+    left: 0;
+    background-color: 
+}
+.right {
+    right: 0;
+    background-color: paleturquoise
+
+}
+#input {
+ right: 100;
+}
+button {
+    border: 2px solid powderblue;
+    padding: 30px;
+    hight
+}
+.container {
+    height: 100%;
+    width: half;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .left:after {
+    content: "";
+    background-image: url();
+    background-repeat: repeat-y; 
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: +1;   
+  }
+
+.right:after {
+    content: "";
+    background-image: url();
+    background-repeat: repeat-y; 
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: +1;   
+  }
+  button {
+    border: 2px solid powderblue;
+    padding: 30px;
+    height: 2px;
+    width: 5px;
+}
+/*span { 
+    color: rgb(36, 17, 119); 
+} 
+::-webkit-input-placeholder { 
+    color: #711 
+}
+#main { 
+    position: fixed; 
+    top: 40%; 
+    right: 200px; 
+    width: 400px; 
+    border: 0px solid #421; 
+    padding: 40px; 
+}
+#main div { 
+    margin: 10px; 
+} 
+#input { 
+    border: 0; 
+    padding: 5px; 
+    border: 1px solid #421; 
+}*/
