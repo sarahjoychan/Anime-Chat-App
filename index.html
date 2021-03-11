@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <script defer src="index.js" charset="utf-8"></script>
         <title>Happy Anime Chat</title>
         <link rel="stylesheet" href="index.css">
     </head>
@@ -18,8 +19,11 @@
 
           <form name="message" action="">
               <input name="usermsg" type="text" id="usermsg">
-              <input name="submitmsg" type="submit" id="submitmsg">
+              <input name="submitmsg" type="button" onclick="handleClick()" value="Submit" id="submitmsg">
           </form>
+          <div id = "anime">
+           <img id="animePic" src="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
+          </div>
         </div>
 
 

@@ -1,2 +1,9 @@
-npm install jikanjs --save
-const jikanjs  = require('jikanjs');
+let animeDiv = document.getElementById('anime');
+
+let handleClick = function() {
+    fetch(`https://api.jikan.moe/v3/anime/1`).then(res => res.json())
+    .then(data => {
+        animeDiv.innerHTML += `<p> ${data.title} </p>`
+    });
+}
+
