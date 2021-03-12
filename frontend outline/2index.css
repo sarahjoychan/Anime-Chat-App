@@ -22,30 +22,16 @@
     display: flex;
     align-items: center;
     height: 65px;
-    padding-left: 15%;
-    position: centered;
-    
+    padding: 0% 10px;
+    position: relative;
 }
-.chat-header h2 {
-    align-items: centered;
-    font-weight: bold;
-    margin-top: 10px;
-    font-size: 120%;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
-    
-}
-.chat-header #reset{
-    margin-right: 0%;
-    
-}
-
 .chat-box {
     flex: 1;
     background: url('../');
     background-attachment: fixed;
     padding-left: 20px;
     overflow-y: scroll;
-    background-color:lavenderblush;
+    background-color:lightsteelblue;
 }
 .chat-r {
     display: flex;
@@ -53,9 +39,6 @@
 .chat-r .sp {
     flex: 1;
 
-}
-.chat-l {
-    display: flex;
 }
 .chat-box .message {
     max-width: 300px;
@@ -72,67 +55,38 @@
 }
 .chat-box .mess-r {
     background: lemonchiffon;
-    align-items: center;
-    margin-left: auto;  
-    size: relative;
 }
 .chat-myside .gif {
     width: 20px;
 } 
-.chat-myside .check {
+.chat-box .check {
     float: right;
-}
-.chat-user-side .check {
-    float: left;
 }
 .chat-box .check span {  
     font-size: 12px;
     font-weight: 700px;
 }
 .chat-footer {
-    
-    justify-content: centered-right;
-    align-items: right;
+    display: flex;
+    justify-content: center;
+    align-items: left;
     border-radius: 60px;
     position: relative;
     cursor: pointer;
-    width: ;
-    height: min-content;
-    padding-bottom: 20px;
-    background-color: lightsteelblue;
-}
-.chat-footer .input {
-    margin-left: auto;
-    display: flex;
-    
 }
 .chat-footer textarea {
-    position: static;
-    display: ruby-text-container;
+    display: block;
     flex: 1;
     width: 75%;
     height: 30px;
     border-radius: 80px;
-    margin-top: 15%;
+    margin: 5px;
     padding: 10px;
     outline: none;
     font-size: 19px;
-    
+    padding-left: 40px;
+    padding-right: 90px;
     border: 2px solid #ccc;
     color: #555;
     resize: none;
-}
-.chat-footer .submit{
-    display: block;
-    height: 25px;
-    width: 25px;
-    position: relative;
-    margin-left: 85%;
-}
-
-*::-webkit-scrollbar {
-	width: 5px;
-}
-*::-webkit-scrollbar-track {
-	background: #f1f1f1;
 }
