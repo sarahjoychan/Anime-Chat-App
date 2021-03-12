@@ -82,6 +82,7 @@
 .chat-myside .gif {
     max-width: 300px;
     max-height: relative;
+    border-radius: 15px;
 } 
 .chat-myside .check {
     float: right;
@@ -94,21 +95,14 @@
     font-weight: 700px;
 }
 .chat-footer {
-    
     justify-content: centered-right;
-    align-items:
-    border-radius: 60px;
+    align-items: ;
     position: relative;
     cursor: pointer;
     width: ;
     height: min-content;
     padding-bottom: 20px;
     background-color: lightsteelblue;
-}
-.chat-footer .input {
-    margin-left: auto;
-    display: flex;
-    
 }
 .chat-footer textarea {
     position: static;
@@ -121,7 +115,6 @@
     padding: 10px;
     outline: none;
     font-size: 19px;
-    
     border: 2px solid #ccc;
     color: #555;
     resize: none;
