@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <script src="index.js"></script>
+      <script defer src="index.js"></script>
       <title>Happy Anime Chat</title>
       <link rel="stylesheet" href="index.css">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     </head>
-    <body>
+    <body onload="checkIfTheresAPrompt()">
         <div class="container">
             <div class="chat">
                 <div class="chat-header">
                     <h2>HELLO ALL CURRENT AND SOON TO BE ANIME LOVERS!!!</h2>
-                    <input  type="reset" id="reset" value="restart" onclick="function-goes-here">
-                    
+                    <input  type="reset" id="reset" value="restart" onclick="restart()">   
                 </div>
-                <div class="chat-box">
-    
+
+
+                <div class="chat-box" id="chat-box" >
     
                     <div class="chat-myside">
                         <div class="message">
-                            <div>
-                                <img src="https://tenor.com/view/kakashi-gif-19433121.gif" class="gif" alt="Anime GIF waving at you">
+                            <div class="myside" id="prompt">
+                                
                             </div>
-                            <p>
-                                Hi! Do you like anime?? 
-                            </p>
-                            <div class="check">
-                                <span>date/time</span>
+                            <div class="myside" id="gif-output">
+                                
+                            </div>
+                            <div class="check" id="time">
+                                <span></span>
                             </div>
                         </div>
                         <div class="sp"></div>
                     </div>
-    
-    
-                    <div class="chat-user-side">
+
+                    <div class="chat-user-side" id="input-section">
                         <div class="sp"></div>
-                        <div class="message mess-r">
-                            <p>
-                                Users text
-                            </p>
-                            <div class="check">
-                                <span>date/time</span>
+                        <div class="message" id="user-input">
+                            
+                            <div class="check" id="time">
+                                <span></span>
                                 
                             </div>
                         </div>
                     </div>
     
                 </div>
-                <div class="chat-footer">
-                    
-                    <div class="user-input">
-                        <input id="input" type="text" placeholder="answer  here..." autocomplete="off">
-                        <input id="submit" type="submit"  onclick="function-goes-here">
-                    </div> 
-                    
-                        
+
+
+                <div class="chat-footer">  
+                    <div class="user">
+                        <input id="input" type="text" value="" autocomplete="off">
+
+                        <input id="submit" type="submit" value="Send Request" onclick="addChatToChatBox()" >
+                    </div>   
                 </div>
+
             </div>
         </div>
         

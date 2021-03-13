@@ -40,7 +40,7 @@
     flex: 1;
 
 }
-.chat-box .message {
+.chat-box .chat-myside {
     max-width: 300px;
     background: paleturquoise;
     padding: 10px;
@@ -53,8 +53,9 @@
     word-break: break-all;
     font-size: 18px;
 }
-.chat-box .mess-r {
+.chat-box .chat-user-side {
     background: lemonchiffon;
+    size: relative;
 }
 .chat-myside .gif {
     width: 20px;

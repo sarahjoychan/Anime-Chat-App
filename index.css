@@ -2,7 +2,6 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	
 }
 .container {
     width: auto;
@@ -24,19 +23,21 @@
     height: 65px;
     padding-left: 15%;
     position: centered;
+    display: relative;
     
 }
 .chat-header h2 {
-    align-items: centered;
+    align-items: center;
     font-weight: bold;
     margin-top: 10px;
-    font-size: 120%;
+    font-size: 175%;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+
     
 }
 .chat-header #reset{
     margin-right: 0%;
-    
+    align-items:stretch;
 }
 
 .chat-box {
@@ -57,27 +58,43 @@
 .chat-l {
     display: flex;
 }
-.chat-box .message {
+.chat-box #prompt {
     max-width: 350px;
     max-height: relative;
     background: paleturquoise;
     padding: 10px;
     border-radius: 10px;
     margin: 20px 0px;
-    cursor: pointer;
     display: relative;
     font-family:'Arial Narrow';
-
+    size: relative;
 }
+.chat-box #auto-output {
+    max-width: 350px;
+    max-height: relative;
+    background: paleturquoise;
+    padding: auto;
+    border-radius: auto;
+    margin-right: auto; 
+    display: relative;
+    font-family:'Arial Narrow';
+    size: relative;
+}
+.chat-box .chat-user-side{
+    max-width: 350px;
+    max-height: relative;
+    background: lemonchiffon;
+    padding: auto;
+    border-radius: auto;
+    margin-left: auto;  
+    display: relative;
+    font-family:'Arial Narrow';
+    size: relative;
+}
+
 .chat-box .message p {
     word-break: normal;
     font-size: 18px;
-}
-.chat-box .mess-r {
-    background: lemonchiffon;
-    align-items: center;
-    margin-left: auto;  
-    size: relative;
 }
 .chat-myside .gif {
     max-width: 300px;

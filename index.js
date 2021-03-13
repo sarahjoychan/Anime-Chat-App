@@ -14,10 +14,93 @@ let genreTitle = document.getElementById('genre-title');
 let findAnimeAmongGenre = function() {
     fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${6}/page=1`).then(res => res.json()).then(data => {
         console.log(data.title);
-        genreTitle.innerHtml = data.title;
+        genreTitle.innerHTML = data.title;
     });
 }
 
+/*
+document.addEventListener("DOMContentLoaded", () => {
+    if (onclick === "submit") {
+        var input = document.getElementById("input").value;
+        document.getElementById("user-input").innerHTML = input;
+        output(input);    
+         }
+      }); */
+
+/*function output(input) {
+    let text = (input.toLowerCase()).replace(/[^\w\s\d]/gi, "");
+}*/
+
+
+/* add user-input to chat-box */
+let addChatToChatBox = function() {
+    const mainUserDiv = document.getElementById("user-input");
+    let userDiv = document.createElement("div");
+    userDiv.id = "lastUserInput"
+    userDiv.innerHTML = `${input.value}`;
+    mainUserDiv.appendChild(userDiv);  
+    /*const mainUserDivTime = document.getElementById("user-input");*/
+    
+}
+
+/* 1) if no prompt exsists post intial prompt
+    2) if there is a prompt callback function newPrompt()*/
+let lastPrompt = document.getElementById("prompt");
+
+function checkIfTheresAPrompt() {
+    let prompt1 = "Hi! Do you like to watch anime?? (please respond with; 'yes', 'no' or 'I don't watch anime.')"
+    if (lastPrompt.children.length ==  0) {
+        lastPrompt.innerHTML = prompt1;
+    } else {
+        newPrompt();
+    }
+}
+
+
+
+let lastInput = document.getElementById("user-input").lastElementChild.innerHTML;
+
+console.log(lastInput);
+
+let newPrompt = function(lastInput, lastPrompt) {
+    let text = lastInput.toLowerCase().replace(/[^\w\s]/gi, "").replace(/[\d]/gi, "").trim();
+    text = text
+    .replace(/ a /g, " ")   // 'tell me a story' -> 'tell me story'
+    .replace(/i feel /g, "")
+    .replace(/whats/g, "what is")
+    .replace(/please /g, "")
+    .replace(/ please/g, "")
+    .replace(/r u/g, "are you");
+
+
+}
+
+/*let prompt2 = "YAY! Can I help you find some cool anime to watch?";
+    let prompt3 = "This is a different question";
+
+
+    } else if (promptParagraph.innerHTML ==  prompt1){
+        promptParagraph.innerHTML = prompt2;
+    } else if (promptParagraph.innerHTML ==  prompt2){
+        promptParagraph.innerHTML = prompt3;
+    }
+
+    */
+
+
+
+
+let restart = function() {
+
+}
+
+/*const mainDiv = document.getElementById("prompt");
+    let mysideDiv = document.createElement("div");
+    mysideDiv.id = "generated-output";
+    mysideDiv.innerHTML = `${promptParagraph}`;
+    mainDiv.appendChild(mysideDiv);*/
+
+/*<img src="https://tenor.com/view/kakashi-gif-19433121.gif" class="gif" alt="Anime GIF waving at you"></img>*/
 /*var genre = genreEntered
 let findGenre = function(genreEntered) {
     var animeType = genreEntered.toLowerCase();
@@ -156,3 +239,7 @@ let findGenre = function(genreEntered) {
     return genreNum;
 
 } */
+
+/*$("button").click(function(){
+    $(".chat-box").show("fast");
+  });*/
