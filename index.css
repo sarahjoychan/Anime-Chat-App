@@ -113,10 +113,8 @@
 }
 .chat-footer {
     justify-content: centered-right;
-    align-items: ;
     position: relative;
     cursor: pointer;
-    width: ;
     height: min-content;
     padding-bottom: 20px;
     background-color: lightsteelblue;

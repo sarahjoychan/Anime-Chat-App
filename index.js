@@ -1,48 +1,3 @@
-  
-let animeDiv = document.getElementById('anime');
-/*let animePic = document.getElementById('anime-pic');*/
-
-/*let handleClick = function() {
-    fetch(`https://api.jikan.moe/v3/anime/1`).then(res => res.json())
-    .then(data => {
-        animeDiv.innerHTML = `<p> ${data.title} </p>`
-        animePic.innerHTML = `<img src = "${data.image_url}" />`
-    });
-}*/
-
-let genreTitle = document.getElementById('genre-title');
-let findAnimeAmongGenre = function() {
-    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${6}/page=1`).then(res => res.json()).then(data => {
-        console.log(data.title);
-        genreTitle.innerHTML = data.title;
-    });
-}
-
-/*
-document.addEventListener("DOMContentLoaded", () => {
-    if (onclick === "submit") {
-        var input = document.getElementById("input").value;
-        document.getElementById("user-input").innerHTML = input;
-        output(input);    
-         }
-      }); */
-
-/*function output(input) {
-    let text = (input.toLowerCase()).replace(/[^\w\s\d]/gi, "");
-}*/
-
-
-/* add user-input to chat-box */
-let addChatToChatBox = function() {
-    const mainUserDiv = document.getElementById("user-input");
-    let userDiv = document.createElement("div");
-    userDiv.id = "lastUserInput"
-    userDiv.innerHTML = `${input.value}`;
-    mainUserDiv.appendChild(userDiv);  
-    /*const mainUserDivTime = document.getElementById("user-input");*/
-    
-}
-
 /* 1) if no prompt exsists post intial prompt
     2) if there is a prompt callback function newPrompt()*/
 let lastPrompt = document.getElementById("prompt");
@@ -56,55 +11,124 @@ function checkIfTheresAPrompt() {
     }
 }
 
-
-
 let lastInput = document.getElementById("user-input").lastElementChild.innerHTML;
 
-console.log(lastInput);
-
-let newPrompt = function(lastInput, lastPrompt) {
+/* add user-input to chat-box */
+function addChatToChatBox(inputReply, productOfInput) {
+    const mainUserDiv = document.getElementById("user-input");
+    let userDiv = document.createElement("div");
+    userDiv.id = "lastUserInput"
+    userDiv.innerHTML = `${input.value}`;
+    mainUserDiv.appendChild(userDiv);  
+    /*const mainUserDivTime = document.getElementById("user-input");*/
+    
+}
+function outputPrompts(inputReply) {
+    /*make it so that you can compare the users-input with the array's of expected user-replies*/
+    let productOfInput;
     let text = lastInput.toLowerCase().replace(/[^\w\s]/gi, "").replace(/[\d]/gi, "").trim();
     text = text
     .replace(/ a /g, " ")   // 'tell me a story' -> 'tell me story'
     .replace(/i feel /g, "")
     .replace(/whats/g, "what is")
     .replace(/please /g, "")
-    .replace(/ please/g, "")
     .replace(/r u/g, "are you");
 
-
-}
-
-/*let prompt2 = "YAY! Can I help you find some cool anime to watch?";
-    let prompt3 = "This is a different question";
-
-
-    } else if (promptParagraph.innerHTML ==  prompt1){
-        promptParagraph.innerHTML = prompt2;
-    } else if (promptParagraph.innerHTML ==  prompt2){
-        promptParagraph.innerHTML = prompt3;
+    if (compare(userReplyObj, animePromptObj, text)) {
+        /* search for excat match in compare function*/
+        productOfInput = compare(userReplyObj, animePromptObj, text);
+    } else if (text.match(/thank/gi)) {
+        productOfInput = "You're welcome!" + genrePrompt[0];
+    } else {
+        /* if all else fails, return a confused prompt */
+        productOfInput = confusedPrompts[Math.floor(Math.random() * confusedPrompts.length)];
     }
-
-    */
-
-
+    addChatToChatBox(inputReply, productOfInput);
+}
+function compare(userReplyObj, animePromptObj, string) {
+    let genrePrompt = animePromptObj.genrePrompts;
+    let genreReply = userReplyObj.genreReplies;
+    let goodReply = userReplyObj.goodReplies;
+    let badReply = userReplyObj.badReplies;
+    let userReplyFound = false;
+    let animePromptOutput;
+    for (let i = 0; i < goodReply.length; i++) {
+        for (let x = 0; x < goodReply[i].length; x++) {
+            if (goodReply[i][x] === string) {
+                let animeReply = animePromptObj.happyPrompts[i];
+                animePromptOutput = animeReply[Math.floor(Math.random() * animeReply.length)] + genrePrompt[0];
+                userReplyFound = true;
+                break;
+            }
+        }
+        if (userReplyFound) {
+            /* stop outer loop iterating when/if reply is found */
+            break;
+        } 
+    }
+    if (userReplyFound !== true) {
+        for (let y = 0; y < badReply.length; y++) {
+            for (let k = 0; k < badReply[y].length; k++) {
+                if (badReply[y][k] === string) {
+                    let animeReply = animePromptObj.unhappyPrompts[y];
+                    animePromptOutput = animeReply[Math.floor(Math.random() * animeReply.length)] + genrePrompt[0];
+                    userReplyFound = true;
+                    break;
+                }
+            }
+            if (userReplyFound) {
+                break;
+            }
+        }
+    } else if (userReplyFound !== true) {
+        /* if userReplyFound still equals false, now check against genresArray*/
+        let genres = string.split(" ");
+        for (let j = 0; j < genreReply.length; j++) {
+            for (let z = 0; z < genres.length; z++) {
+                /* check if any elements in genres(string) array do not equal any of the elements in genreReply array*/
+                /* if any elements do not equal one another; delete those elements in genres(string) array*/
+                /* with any elements that still remain in the genres(string) array; create a new array called genreArray that uses the filter method with the callback function findgenre() */
+                if (!genreReply[j] !== genres[z]) {
+                    delete genres[z];
+                } else if (genreReply[j] === genres[z]) {
+                    let genreArray = genres.filter(findGenre());
+                    /* Now use this array to find the corresponding anime titles that fit the required genre that are stored in genreArray and store these new anime titles into a new array called animeArray */
+                    let animeArray = findAnimeAmongGenre(generArray);
+                    /* if anime is not sorted by popularity ratings then: */
+                    /* animePromptOutput = animeArray[Math.floor(Math.random() * animeArray.length)] + animeArray[Math.floor(Math.random() * animeArray.length)] + animeArray[Math.floor(Math.random() * animeArray.length)] */
+                    /* else: if anime is sorted by popularity ratings */
+                    animePromptOutput = animeArray[0] + ", " + animeArray[1] + " & " + animeArray[2];
+                    userReplyFound = true; 
+                    break;
+                } 
+            }
+        }
+    }
+    return animePromptObj; 
+}
 
 
 let restart = function() {
-
 }
 
-/*const mainDiv = document.getElementById("prompt");
-    let mysideDiv = document.createElement("div");
-    mysideDiv.id = "generated-output";
-    mysideDiv.innerHTML = `${promptParagraph}`;
-    mainDiv.appendChild(mysideDiv);*/
+let genreTitle = document.getElementById('genre-title');
 
-/*<img src="https://tenor.com/view/kakashi-gif-19433121.gif" class="gif" alt="Anime GIF waving at you"></img>*/
-/*var genre = genreEntered
-let findGenre = function(genreEntered) {
-    var animeType = genreEntered.toLowerCase();
-    var genreNum = [];
+function findAnimeAmongGenre(array) {
+    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${array}/page=1`).then(res => res.json()).then(data => {
+        console.log(data.title);
+        genreTitle.innerHTML = data.title;
+    });
+} 
+
+
+
+
+
+
+
+
+function findGenre(genreEntered) {
+    var genreNum;
     switch(animeType){
         case "action":
           genreNum = 1;
@@ -237,9 +261,5 @@ let findGenre = function(genreEntered) {
           break;  
     }
     return genreNum;
+} 
 
-} */
-
-/*$("button").click(function(){
-    $(".chat-box").show("fast");
-  });*/
