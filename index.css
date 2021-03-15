@@ -66,19 +66,9 @@
 .chat-l {
     display: flex;
 }
-.chat-box #prompt {
+.chat-box #anime {
     max-width: 350px;
-    max-height: relative;
-    background: paleturquoise;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 20px 0px;
-    display: relative;
-    font-family:'Arial Narrow';
-    size: relative;
-}
-.chat-box #auto-output {
-    max-width: 350px;
+    min-width: relative;
     max-height: relative;
     background: paleturquoise;
     padding: auto;
@@ -88,7 +78,7 @@
     font-family:'Arial Narrow';
     size: relative;
 }
-.chat-box .chat-user-side{
+.chat-box #guest {
     max-width: 350px;
     max-height: relative;
     background: lemonchiffon;
@@ -104,7 +94,7 @@
     word-break: normal;
     font-size: 18px;
 }
-.chat-myside .gif {
+.chat-animeSide .animeGIF {
     max-width: 300px;
     max-height: relative;
     border-radius: 15px;
@@ -115,7 +105,7 @@
 .chat-user-side .check {
     float: left;
 }
-.chat-box .check span {  
+.chat-box .timeStamp span {  
     font-size: 12px;
     font-weight: 700px;
 }
