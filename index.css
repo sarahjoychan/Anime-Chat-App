@@ -21,19 +21,27 @@
     display: flex;
     align-items: center;
     height: 65px;
-    padding-left: 15%;
     position: centered;
     display: relative;
     
+}
+.chat-header img {
+   max-width: auto; 
+   max-height: 85px;
+   margin-left: 0%;
+   border-radius: 5px;
+   display: flex;
+   padding: 3px;
+}
+.chat-header span {
+    display: flex;
 }
 .chat-header h2 {
     align-items: center;
     font-weight: bold;
     margin-top: 10px;
     font-size: 175%;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
-
-    
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif 
 }
 .chat-header #reset{
     margin-right: 0%;

@@ -42,9 +42,7 @@ function checkIfTheresAPrompt() {
     let prompt1 = "Hi! Do you like to watch anime?? (please respond with; 'yes', 'no' or 'I don't watch anime.')"
     if (lastPrompt.children.length ==  0) {
         lastPrompt.innerHTML = prompt1;
-    } else {
-        newPrompt();
-    }
+    } 
 }
 
 let lastInput = document.getElementById("user-input").lastElementChild.innerHTML;
