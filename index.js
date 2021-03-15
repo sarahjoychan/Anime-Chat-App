@@ -1,3 +1,39 @@
+const userRepliesObj = {goodReplies: goodRepliesArray, badReplies: badRepliesArray, genreReplies: genreRepliesArray, confusedReplies: confusedRepliesArray};
+const goodRepliesArray = [
+    ["ah yes", "yes", "sure", "ok", "okay"],
+    ["fantastic", "awesome", "incredible", "cool", "fun stuff"],
+    ["yay", "lets us do this"],
+    ["i love you"]
+];
+const badRepliesArray = [
+    ["no", "no thanks","never", "nay"],
+    ["i think i will pass", "i decline", "sorry no", "sorry no thanks"],
+    ["nope", "nada"]
+];
+const genreRepliesArray = ["action", "adventure", "cars", "comedy", "dementia", "demons", "mystery", "drama", "ecchi", "fantasy", "game", "hentai", "historical", "horror", "kids", "magic", "martial arts", "mecha", "music", "parody", "samurai", "romance", "school", "sci fi", "shoujo", "shoujo ai", "shounen", "shounen ai", "space", "sports", "super power", "vampire", "yaoi", "yuri", "harem", "slice of life", "supernatural", "military", "police", "psychological", "thriller", "seinen", "josei"];
+const confusedRepliesArray = [
+    ["what is anime"],
+    ["what are genres"],
+    ["i do not watch anime"]
+];
+
+const animePromptsObj = {happyPrompts: happyPromptsArray, unhappyPrompts: unhappyPromptsArray, animeDef: animeDefArray};
+const happyPromptsArray = [
+    ["Awesome!", "Fantastic!!!", "Yay!", "Wonderful!", "Awesome sauce!!"],
+    ["Yippie!!", "That's what I like to hear!"]
+];
+const unhappyPromptsArray = [
+    ["Hearing that makes me mad. So lets get glad! And find some cool anime for you to watch!!"],
+    ["I'm just gonna pretend you didn't just say that."],
+    ["(...grumble) Wow you sure are a piece of work! So I'm just gonna pretend you didn't just say that."],
+    ["We'll you should!! That's why I'm here to help you change that!"]
+    ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
+];
+const confusedPromptsArray = [
+    ["Bro.. I literally did not understand a single word you just said... How about we start-over? If so, just refresh the page!"],
+    ["How about we try this again. Just refresh the page"], 
+    ["I don't understand"], ["Do you speak english?"], ["Maybe you should go find someone that speaks english"], ["Bro I literally cant NOT understand you"], ["Do you understand the Words that are coming out of my mouth??"]
+];
 /* 1) if no prompt exsists post intial prompt
     2) if there is a prompt callback function newPrompt()*/
 let lastPrompt = document.getElementById("prompt");
@@ -119,13 +155,6 @@ function findAnimeAmongGenre(array) {
         genreTitle.innerHTML = data.title;
     });
 } 
-
-
-
-
-
-
-
 
 function findGenre(genreEntered) {
     var genreNum;
@@ -257,7 +286,7 @@ function findGenre(genreEntered) {
           genreNum = 42;
           break;
         case "josei":
-          genreNum = 23;
+          genreNum = 43;
           break;  
     }
     return genreNum;
