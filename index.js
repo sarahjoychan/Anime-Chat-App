@@ -102,16 +102,15 @@ function addChatToChatBox(inputReply, productOfInput) {
 function outputPrompts(inputReply) {
     /*make it so that you can compare the users-input with the array's of expected user-replies*/
     let productOfInput;
-    let text = inputReply.toLowerCase().replace(/[^\w\s]/gi, "").replace(/[\d]/gi, "").trim();
+    let text = inputReply.toLowerCase().replace(/\d/g, "").trim("");
     text = text
-    .replace(/ a /g, "")   // 'tell me a story' -> 'tell me story'
+    .replace(/ a /g, "") // 'tell me a story' -> 'tell me story'
     .replace(/i feel /g, "")
     .replace(/whats/g, "what is")
     .replace(/please /g, "")
-    .replace(/ ! /g, "") 
-    .replace(/ ? /g, "") 
-    .replace(/r u/g, "are you");
-
+    .replace(/ ! /g, "")
+    .replace(/r u/g, "are you")
+    .replace(/\?/g, '-');
     if (compare(userReplyObj, animePromptsObj, text)) {
         /* search for excat match in compare function*/
         productOfInput = compare(userReplyObj, animePromptsObj, text);
@@ -149,11 +148,12 @@ const animePromptsObj = {happyPrompts:[
     ["(...grumble) Wow you sure are a piece of work! So I'm just gonna pretend you didn't just say that."],
     ["We'll you should!! That's why I'm here to help you change that!"]
     ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
-], genrePrompt:"Okay, now let's find you some cool anime! Please enter up to 3 of your favorite genres/show types. Then press enter. =D", animeDef:[]};
+], genrePrompt:"Okay, now let's find you some cool anime to watch! Please enter up to 3 of your favorite genres/show types. Then press enter and let me work my magic ;)", animeDef:[]};
 
 
 
-function compare(userReplyObj, animePromptsObj, string) {
+function compare(userReplyObj, animePromptsObj, string, findGenre, findAnimeAmongGenre) {
+    let genreArray = [];
     let genreRepliesArray = userReplyObj.genreRepliesArray;
     let goodReply = userReplyObj.goodReplies;
     let badReply = userReplyObj.badReplies;
@@ -199,30 +199,169 @@ function compare(userReplyObj, animePromptsObj, string) {
     } 
     if (userReplyFound !== true) {
         /* if userReplyFound still equals false, now check against genresArray*/
+        console.log(string);
         let genres = string.split(" ");
         for (let j = 0; j < genreRepliesArray.length; j++) {
             for (let z = 0; z < genres.length; z++) {
-                console.log(genres);
                 /* check if any elements in genres(string) array do not equal any of the elements in genreReply array*/
                 /* if any elements do not equal one another; delete those elements in genres(string) array*/
                 /* with any elements that still remain in the genres(string) array; create a new array called genreArray that uses the filter method with the callback function findgenre() */
-                if ((genres[z] === genreRepliesArray[j]) || (genres[z-1] + genres[z] + genres[z+1] === genreRepliesArray[j]) || (genres[z-1] + genres[z] === genreRepliesArray[j])) {
-                    let genreArray = genres.filter(findGenre(genres[z]));
-                } else {
-                    delete genres[z];
-                    console.log(genres[z]);
-                    let genreArray = genres.filter(findGenre(genres[z]));
+                if (genres[z] === genreRepliesArray[j]) {
+                    let genresArray = genres.map(function findGenre(genreEntered) {
+                        var genreNum = [];
+                        switch(genreEntered){
+                            case "action":
+                              genreNum = 1;
+                              break;
+                            case "adventure":
+                              genreNum = 2;
+                              break;  
+                            case "cars":
+                              genreNum = 3;
+                              break;
+                            case "comedy":
+                              genreNum = 4;
+                              break;
+                            case "dementia":
+                              genreNum = 5;
+                              break;  
+                            case "demons":
+                              genreNum = 6;
+                              break;
+                            case "mystery":
+                              genreNum = 7;
+                              break;
+                            case "drama":
+                              genreNum = 8;
+                              break;  
+                            case "ecchi":
+                              genreNum = 9;
+                              break;
+                            case "fantasy":
+                              genreNum = 10;
+                              break;
+                            case "game":
+                              genreNum = 11;
+                              break;  
+                            case "hentai":
+                              genreNum = 12;
+                              break;
+                            case "historical":
+                              genreNum = 13;
+                              break;
+                            case "horror":
+                              genreNum = 14;
+                              break;  
+                            case "kids":
+                              genreNum = 15;
+                              break;
+                            case "magic":
+                              genreNum = 16;
+                              break;
+                            case "martial arts":
+                              genreNum = 17;
+                              break;  
+                            case "mecha":
+                              genreNum = 18;
+                              break;
+                            case "music":
+                              genreNum = 19;
+                              break;
+                            case "parody":
+                              genreNum = 20;
+                              break;  
+                            case "samurai":
+                              genreNum = 21;
+                              break;
+                            case "romance":
+                              genreNum = 22;
+                              break;
+                            case "school":
+                              genreNum = 23;
+                              break;  
+                            case "sci fi":
+                              genreNum = 24;
+                              break;
+                            case "shoujo":
+                              genreNum = 25;
+                              break;  
+                            case "shoujo ai":
+                              genreNum = 26;
+                              break;
+                            case "shounen":
+                              genreNum = 27;
+                              break;
+                            case "shounen ai":
+                              genreNum = 28;
+                              break;  
+                            case "space":
+                              genreNum = 29;
+                              break;
+                            case "sports":
+                              genreNum = 30;
+                              break;
+                            case "super power":
+                              genreNum = 31;
+                              break;  
+                            case "vampire":
+                              genreNum = 32;
+                              break;
+                            case "yaoi":
+                              genreNum = 33;
+                              break;
+                            case "yuri":
+                              genreNum = 34;
+                              break;  
+                            case "harem":
+                              genreNum = 35;
+                              break;
+                            case "slice of life":
+                              genreNum = 36;
+                              break;
+                            case "supernatural":
+                              genreNum = 37;
+                              break;  
+                            case "military":
+                              genreNum = 38;
+                              break;
+                            case "police":
+                              genreNum = 39;
+                              break;
+                            case "psychological":
+                              genreNum = 40;
+                              break;  
+                            case "thriller":
+                              genreNum = 41;
+                              break;
+                            case "seinen":
+                              genreNum = 42;
+                              break;
+                            case "josei":
+                              genreNum = 43;
+                              break;  
+                        }
+                        return genreNum;
+                    } 
+                );
+                function findAnimeAmongGenre(genresArray) {
+                    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${array}/page=1`).then(res => res.json()).then(data => {(data.title);});
+                }
+                console.log(fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${[1,6,10]}/page=1`).then(res => res.json()).then(data =>(data.title)));
+                    userReplyFound = true; 
+                    break;
+                }
+                } 
+                            /*animePromptOutput = animeArray[0] + ", " + animeArray[1] + " & " + animeArray[2];*/
+                           
+                    }
                     /* Now use this array to find the corresponding anime titles that fit the required genre that are stored in genreArray and store these new anime titles into a new array called animeArray */
-                    let animeArray = findAnimeAmongGenre(generArray);
+                    
                     /* if anime is not sorted by popularity ratings then: */
                     /* animePromptOutput = animeArray[Math.floor(Math.random() * animeArray.length)] + animeArray[Math.floor(Math.random() * animeArray.length)] + animeArray[Math.floor(Math.random() * animeArray.length)] */
                     /* else: if anime is sorted by popularity ratings */
-                    animePromptOutput = animeArray[0] + ", " + animeArray[1] + " & " + animeArray[2];
-                    userReplyFound = true; 
-                    break;
-                } 
-            }
-        }
+                
+            
+        
     }
     return animePromptOutput; 
 }
@@ -233,148 +372,8 @@ let restart = function() {
 
 let genreTitle = document.getElementById('genre-title');
 
-function findAnimeAmongGenre(array) {
-    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${array[0]}/page=1`).then(res => res.json()).then(data => {
-        console.log(data.title);
-    });
-} 
 
-function findGenre(genreEntered) {
-    console.log(genreEntered);
-    var genreNum = [];
-    switch(genreEntered){
-        case "action":
-          genreNum.push(1);
-          break;
-        case "adventure":
-          genreNum = 2;
-          break;  
-        case "cars":
-          genreNum = 3;
-          break;
-        case "comedy":
-          genreNum = 4;
-          break;
-        case "dementia":
-          genreNum = 5;
-          break;  
-        case "demons":
-          genreNum = 6;
-          break;
-        case "mystery":
-          genreNum = 7;
-          break;
-        case "drama":
-          genreNum = 8;
-          break;  
-        case "ecchi":
-          genreNum = 9;
-          break;
-        case "fantasy":
-          genreNum = 10;
-          break;
-        case "game":
-          genreNum = 11;
-          break;  
-        case "hentai":
-          genreNum = 12;
-          break;
-        case "historical":
-          genreNum = 13;
-          break;
-        case "horror":
-          genreNum = 14;
-          break;  
-        case "kids":
-          genreNum = 15;
-          break;
-        case "magic":
-          genreNum = 16;
-          break;
-        case "martial arts":
-          genreNum = 17;
-          break;  
-        case "mecha":
-          genreNum = 18;
-          break;
-        case "music":
-          genreNum = 19;
-          break;
-        case "parody":
-          genreNum = 20;
-          break;  
-        case "samurai":
-          genreNum = 21;
-          break;
-        case "romance":
-          genreNum = 22;
-          break;
-        case "school":
-          genreNum = 23;
-          break;  
-        case "sci fi":
-          genreNum = 24;
-          break;
-        case "shoujo":
-          genreNum = 25;
-          break;  
-        case "shoujo ai":
-          genreNum = 26;
-          break;
-        case "shounen":
-          genreNum = 27;
-          break;
-        case "shounen ai":
-          genreNum = 28;
-          break;  
-        case "space":
-          genreNum = 29;
-          break;
-        case "sports":
-          genreNum = 30;
-          break;
-        case "super power":
-          genreNum = 31;
-          break;  
-        case "vampire":
-          genreNum = 32;
-          break;
-        case "yaoi":
-          genreNum = 33;
-          break;
-        case "yuri":
-          genreNum = 34;
-          break;  
-        case "harem":
-          genreNum = 35;
-          break;
-        case "slice of life":
-          genreNum = 36;
-          break;
-        case "supernatural":
-          genreNum = 37;
-          break;  
-        case "military":
-          genreNum = 38;
-          break;
-        case "police":
-          genreNum = 39;
-          break;
-        case "psychological":
-          genreNum = 40;
-          break;  
-        case "thriller":
-          genreNum = 41;
-          break;
-        case "seinen":
-          genreNum = 42;
-          break;
-        case "josei":
-          genreNum = 43;
-          break;  
-    }
-    return genreNum;
-} 
+
 
 const happyGIFS = [
     ["https://tenor.com/view/anime-happy-excited-gif-13451198.gif", "https://tenor.com/view/squirtle-flowers-pokemon-gif-10787608.gif", "https://tenor.com/view/inosuke-running-demon-slayer-kimetsu-no-yaiba-fun-gif-20481623.gif", "https://tenor.com/view/demon-slayer-inosuke-amazed-sparkle-gif-15052588.gif", "https://tenor.com/view/inosuke-kimetsu-no-yaba-gif-15023737.gif"]
@@ -385,3 +384,24 @@ const unhappyGIFS = [
 const yayGIFS = [
     ["https://tenor.com/view/goodjob-thumbsup-nice-excellent-naruto-gif-7248440.gif", ".gif", "https://tenor.com/view/asuna-sword-art-online-anime-kirito-smile-gif-15399998.gif"]
 ];
+/*((genres[z] === genreRepliesArray[j]) || (genres[z-1] + genres[z] + genres[z+1] === genreRepliesArray[j]) || (genres[z-1] + genres[z] === genreRepliesArray[j])) */
+
+function findAnimeAmongGenre() {
+    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${array}/page=1`).then(res => res.json()).then(data => {
+        (data.title);
+    });
+}
+console.log(fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${[1,6,10]}/page=1`).then(res => res.json()).then(data =>(data.title)));
+
+
+function findAnimeAmongGenre() {
+    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${array}/page=1`).then(res => res.json()).then(data => {
+        (data.title);
+    });
+}
+/* animeArray = [];
+                    for (genre of genreArray) {
+                        genreidx = findAnimeAmongGenre(genre);
+                        animeArray.push(genreidx);
+                        console.log(animeArray);
+                    } */

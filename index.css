@@ -78,6 +78,18 @@
     font-family:'Arial Narrow';
     size: relative;
 }
+.chat-box #promptMessages {
+    max-width: 350px;
+    min-width: relative;
+    max-height: relative;
+    background: paleturquoise;
+    padding: auto;
+    border-radius: auto;
+    margin-right: auto; 
+    display: relative;
+    font-family:'Arial Narrow';
+    size: relative;
+}
 .chat-box #guest {
     max-width: 350px;
     max-height: relative;
