@@ -344,9 +344,9 @@ function compare(userReplyObj, animePromptsObj, string, findGenre, findAnimeAmon
                     } 
                 );
                 function findAnimeAmongGenre(genresArray) {
-                    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${array}/page=1`).then(res => res.json()).then(data => {(data.title);});
+                    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${genresArray}/page=1`).then(res => res.json()).then(data => {(data.title);});
                 }
-                console.log(fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${[1,6,10]}/page=1`).then(res => res.json()).then(data =>(data.title)));
+                console.log(fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${genresArray}/page=1`).then(res => res.json()).then(data =>(data.title)));
                     userReplyFound = true; 
                     break;
                 }
