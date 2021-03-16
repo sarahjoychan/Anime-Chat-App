@@ -150,10 +150,14 @@ const animePromptsObj = {happyPrompts:[
     ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
 ], genrePrompt:"Okay, now let's find you some cool anime to watch! Please enter up to 3 of your favorite genres/show types. Then press enter and let me work my magic ;)", animeDef:[]};
 
-
+function findAnimeAmongGenre(genresArray) {
+    var love = [fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${genresArray}/page=1`).then(res => res.json()).then(data => {
+        (data.title);})];
+}
 
 function compare(userReplyObj, animePromptsObj, string, findGenre, findAnimeAmongGenre) {
-    let genreArray = [];
+    let genresArray = [];
+    let animeArray = [];
     let genreRepliesArray = userReplyObj.genreRepliesArray;
     let goodReply = userReplyObj.goodReplies;
     let badReply = userReplyObj.badReplies;
@@ -343,24 +347,25 @@ function compare(userReplyObj, animePromptsObj, string, findGenre, findAnimeAmon
                         return genreNum;
                     } 
                 );
+                    
+                
+                }
+            } if (findAnimeAmongGenre(genresArray)) {
                 function findAnimeAmongGenre(genresArray) {
-                    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${genresArray}/page=1`).then(res => res.json()).then(data => {(data.title);});
+                var love = [fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${genresArray}/page=1`).then(res => res.json()).then(data => {
+                    (data.title);})];
                 }
-                console.log(fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${genresArray}/page=1`).then(res => res.json()).then(data =>(data.title)));
-                    userReplyFound = true; 
-                    break;
-                }
-                } 
-                            /*animePromptOutput = animeArray[0] + ", " + animeArray[1] + " & " + animeArray[2];*/
+                userReplyFound = true; 
+                break;
+            } 
+                animePromptOutput = animeArray[0] + ", " + animeArray[1] + " & " + animeArray[2];
                            
-                    }
+        }
                     /* Now use this array to find the corresponding anime titles that fit the required genre that are stored in genreArray and store these new anime titles into a new array called animeArray */
                     
                     /* if anime is not sorted by popularity ratings then: */
                     /* animePromptOutput = animeArray[Math.floor(Math.random() * animeArray.length)] + animeArray[Math.floor(Math.random() * animeArray.length)] + animeArray[Math.floor(Math.random() * animeArray.length)] */
                     /* else: if anime is sorted by popularity ratings */
-                
-            
         
     }
     return animePromptOutput; 
