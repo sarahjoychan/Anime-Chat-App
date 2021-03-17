@@ -145,8 +145,7 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
         let anime1a;
         let anime2;
         let anime2a;
-        return fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=genresArray&order_by=members&sort=desc/page=1`).then(res => res.json())this.setState({ data: response.data)).catch()
-    {
+        return fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=genresArray&order_by=members&sort=desc/page=1`).then(res => res.json()).then(function (data) {
             results = data.results;
             returnAnime.push(results[(Math.floor(Math.random() * 50))]);
             returnAnime.push(results[(Math.floor(Math.random() * 50))]);
