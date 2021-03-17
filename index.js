@@ -2,9 +2,11 @@ const submitField = document.getElementById("input");
 const submitInput = document.getElementById("submit");
 
 function sendMessage() {
-  let inputReply = submitField.value;
-  submitField.value = "";
-  outputPrompts(inputReply);
+  if (submitField.value) {
+    let inputReply = submitField.value;
+    submitField.value = "";
+    outputPrompts(inputReply);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
