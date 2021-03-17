@@ -46,7 +46,17 @@
 .chat-header #reset{
     margin-right: 0%;
     align-items:stretch;
+    width: 50px;
+    margin-left: 10px;
+    height: 25px;
+    font-size: normal;
+    font-weight: bold;
 }
+#reset:hover {
+    background-color:lightcoral;
+    color: white;
+    border: solid white 1px;
+  }
 
 .chat-box {
     flex: 1;
