@@ -271,3 +271,21 @@
   align-items: center;
   height: 100px;
 }
+
+#sendButton {
+  height: 40px;
+  margin-left: 5px;
+  width: 100px;
+}
+
+#sendButton:hover {
+  border: solid white 1px;
+  background-color: green;
+  color: white;
+}
+
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,11 +1,16 @@
+const submitField = document.getElementById("input");
+const submitInput = document.getElementById("submit");
+
+function sendMessage() {
+  let inputReply = submitField.value;
+  submitField.value = "";
+  outputPrompts(inputReply);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  const submitField = document.getElementById("input");
-  const submitInput = document.getElementById("submit");
   submitField.addEventListener("keydown", function (e) {
     if (e.code === "Enter") {
-      let inputReply = submitField.value;
-      submitField.value = "";
-      outputPrompts(inputReply);
+      sendMessage();
     }
   });
 });
