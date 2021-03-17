@@ -6,7 +6,7 @@
 .container {
     width: auto;
     margin: auto;
-} 
+}
 .chat {
     display: flex;
     flex-direction: column;
@@ -23,10 +23,10 @@
     height: 65px;
     position: centered;
     display: relative;
-    
+
 }
 .chat-header img {
-   max-width: auto; 
+   max-width: auto;
    max-height: 85px;
    margin-left: 0%;
    border-radius: 5px;
@@ -41,7 +41,7 @@
     font-weight: bold;
     margin-top: 10px;
     font-size: 175%;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif 
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 .chat-header #reset{
     margin-right: 0%;
@@ -70,26 +70,26 @@
     max-width: 350px;
     min-width: relative;
     max-height: relative;
-    background: paleturquoise;
+    /* background: paleturquoise; */
     padding: auto;
     border-radius: auto;
-    margin-right: auto; 
+    margin-right: auto;
     display: relative;
     font-family:'Arial Narrow';
     size: relative;
 }
 .chat-box #promptMessages {
-    max-width: 350px;
+    /* max-width: 350px;
     min-width: relative;
-    max-height: relative;
-    background: paleturquoise;
+    max-height: relative; */
+    /* background: paleturquoise; */
     padding: auto;
     border-radius: auto;
-    margin-right: auto; 
+    margin-right: auto;
     display: relative;
     font-family:'Arial Narrow';
     size: relative;
- 
+
     clear: both;
 
 }
@@ -99,11 +99,11 @@
     background: lemonchiffon;
     padding: auto;
     border-radius: auto;
-    margin-left: auto;  
+    margin-left: auto;
     display: relative;
     font-family:'Arial Narrow';
     size: relative;
-   
+
 }
 
 .chat-box .message p {
@@ -114,14 +114,24 @@
     max-width: 300px;
     max-height: relative;
     border-radius: 15px;
-} 
+}
 .chat-myside .check {
     float: right;
 }
 .chat-user-side .check {
     float: left;
 }
-.chat-box .timeStamp span {  
+.chat-user-side {
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+.chat-myside {
+  margin-bottom: 200px;
+}
+
+.chat-box .timeStamp span {
     font-size: 12px;
     font-weight: 700px;
 }
@@ -162,4 +172,58 @@
 }
 *::-webkit-scrollbar-track {
 	background: #f1f1f1;
+}
+
+#guest {
+  /* width: 100%; */
+  margin-top: 30px;
+  border: solid 0.25px rgba(0, 0, 0, 0.219);
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  animation: forwardIn forwards 0.25s;
+  margin-right: 15px;
+}
+
+#anime {
+  margin-top: 30px;
+  background-color: paleturquoise;
+  border: solid 0.25px rgba(0, 0, 0, 0.219);
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  animation: forwardIn forwards 0.25s;
+}
+
+
+#promptMessages {
+  width: 100%;
+}
+
+
+@keyframes forwardIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.timestamp {
+  animation: forwardIn forwards 0.25s;
+  margin-left: 105px;
+  font-size: small;
+  color: rgba(82, 82, 82, 0.767);
+  font-weight: 700;
+}
+
+.timestamp2 {
+  animation: forwardIn forwards 0.25s;
+  float: right;
+  margin-right: 125px;
+  font-size: small;
+  color: rgba(82, 82, 82, 0.767);
+  font-weight: 700;
 }
