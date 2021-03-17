@@ -44,7 +44,7 @@ function addChatToChatBoxUser(inputReply) {
     
 }
 
-function addChatToChatBox(productOfInput1, picture1, picture2) {
+function addChatToChatBox(productOfInput1, picture1, picture2, gifReply) {
     const promptRepliesContainer = document.getElementById("promptMessages");
 
     /*let timeStampContainer = document.createElement("div");
@@ -56,22 +56,24 @@ function addChatToChatBox(productOfInput1, picture1, picture2) {
     timeStampContainer.appendChild(timeCheckSpan);*/
 
     let animeOutputDiv = document.createElement("div");
-    let animeGifOutput1 = document.createElement("img");
+    let animeGifOutput = document.createElement("img");
     let animeOutputText = document.createElement("span");
     animeOutputDiv.id = "anime";
-    animeGifOutput1.scr = `${picture1}`;
-    animeGifOutput1.className = "anime picture";
+    animeGifOutput.scr = `${gifReply}`;
+    console.log(gifReply);
+    animeGifOutput.className = "anime picture";
     animeOutputDiv.appendChild(animeOutputText);
-    console.log(picture1);
+    
     setTimeout(() => {
         animeOutputText.innerText = `${productOfInput1}`;
     },1500) 
-    animeOutputDiv.appendChild(animeGifOutput1);
+    animeOutputDiv.appendChild(animeGifOutput);
     promptRepliesContainer.appendChild(animeOutputDiv);
     /*animeOutputDiv.appendChild(timeStampContainer);*/
     promptRepliesContainer.scrollTop = promptRepliesContainer.scrollHeight - promptRepliesContainer.clientHeight;
     
 }
+
 const confusedPrompts = ["I'm confuesed.", "Bro.. I literally did'nt understand a single thing you just said.", "I think you have an error in your message.", "Are you sure your speaking english?", "Try again.", "Sorry bro I only speak english.. "];
 function outputPrompts(inputReply, confusedPrompts) {
     /*make it so that you can compare the users-input with the array's of expected user-replies*/
@@ -86,9 +88,9 @@ function outputPrompts(inputReply, confusedPrompts) {
     .replace(/ ! /g, "")
     .replace(/r u/g, "are you")
     .replace(/\?/g, '-');
-    if (compare(userReplyObj, animePromptsObj, text)) {
+    if (compare(userReplyObj, animePromptsObj, animeGifs, text)) {
         /* search for excat match in compare function*/
-        productOfInput = compare(userReplyObj, animePromptsObj, text);
+        productOfInput = compare(userReplyObj, animePromptsObj, animeGifs, text);
     } else if (text.match(/thank/gi)) {
         productOfInput = "You're welcome!" + genrePrompt[0];
     } else if (userReplyFound !== false) {
@@ -121,13 +123,14 @@ const animePromptsObj = {happyPrompts:[
     ["(...grumble) Wow you sure are a piece of work! So I'm just gonna pretend you didn't just say that."],
     ["We'll you should!! That's why I'm here to help you change that!"]
     ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
-], genrePrompt:"Now let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres. Step 2: Press enter and let me work my magic ;)"};
+], genrePrompt:" Now let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre seperated by a comma and a space. Step 2: Press enter and let me work my magic ;)"};
 
 confusedPrompts:["I'm confuesed.", "Bro.. I literally did'nt understand a single thing you just said.", "I think you have an error in your message.", "Are you sure your speaking english?", "Try again.", "Sorry bro I only speak english.. "];
     
+const animeGifs = {happyGIFS:["https://tenor.com/view/anime-happy-excited-gif-13451198.gif", "https://tenor.com/view/squirtle-flowers-pokemon-gif-10787608.gif", "https://tenor.com/view/inosuke-running-demon-slayer-kimetsu-no-yaiba-fun-gif-20481623.gif", "https://tenor.com/view/demon-slayer-inosuke-amazed-sparkle-gif-15052588.gif", "https://tenor.com/view/inosuke-kimetsu-no-yaba-gif-15023737.gif"], unhappyGIFS:["https://tenor.com/view/kawaii-anime-tongue-bleh-gif-5018411.gif", "https://giphy.com/gifs/demon-slayer-zenitsu-thundergod-VEzYdo930nTiTuVeMU.gif", "https://tenor.com/view/naruto-sasuke-mad-anime-gif-11475477.gif", "https://tenor.com/view/sasuke-thinking-anime-naruto-gif-13593873.gif", "https://tenor.com/view/llorar1-cry-sad-tears-anime-gif-5648908.gif", "https://tenor.com/view/demon-slayer-gif-20317224", "https://tenor.com/view/kimetsu-no-yaiba-demon-slayer-pig-angry-inosuke-hashibira-gif-14905892.gif"]}
 
 
-function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmongGenre) {
+function compare(userReplyObj, animePromptsObj, animeGifs, string, _findGenre, findAnimeAmongGenre) {
     let genresArray = [];
     let animeArray = [];
     let genreRepliesArray = userReplyObj.genreRepliesArray;
@@ -137,6 +140,9 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
     let productOfInput;
     let unhappyPrompts = animePromptsObj.unhappyPrompts;
     let happyPrompts = animePromptsObj.happyPrompts;
+    let happyGIFS = animeGifs.happyGIFS;
+    let unhappyGIFS = animeGifs.unhappyGIFS;
+    let gifOutput = [];
 
  function findAnimeAmongGenre(genresArray) {
         const array = genresArray;
@@ -160,9 +166,9 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
             anime2a = returnAnime[1].score;
             animeArray.push(anime1, anime1a, anime2, anime2a);
             console.log(results, "hi");
-            productOfInput ="Anime Option 1: " + animeArray[0] + "Rating:" + animeArray[1] + " Anime Option 2: " + animeArray[2] + "Rating: " + animeArray[3] + "";
+            productOfInput ="Anime Option 1: '" + animeArray[0] + "'  Rating: " + animeArray[1] + "  Anime Option 2: '"  + animeArray[2] + "'  Rating: " + animeArray[3] + "";
             
-            addChatToChatBox(productOfInput, picture1);
+            addChatToChatBox(productOfInput, picture1, picture2);
             
         });
         
@@ -174,6 +180,8 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                 if (goodReply[i][x] === string) {
                     console.log(animePromptsObj.happyPrompts[i]);
                     let animeReply = animePromptsObj.happyPrompts[i];
+                    let gif = animeGifs.happyGIFS[i];
+                    gifReply = happyGIFS[Math.floor(Math.random() * 5)];
                     productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + " " + animePromptsObj.genrePrompt;
                     userReplyFound = true;
                     break;
@@ -191,6 +199,7 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                 if (badReply[y][k] === string) {
                     console.log(unhappyPrompts[y]);
                     let animeReply = animePromptsObj.unhappyPrompts[y];
+                    gifReply = unhappyGIFS[Math.floor(Math.random() * 7)]
                     productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + animePromptsObj.genrePrompt;
                     userReplyFound = true;
                     break;
@@ -363,12 +372,7 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
     return productOfInput; 
 }
 
-const happyGIFS = [
-    ["https://tenor.com/view/anime-happy-excited-gif-13451198.gif", "https://tenor.com/view/squirtle-flowers-pokemon-gif-10787608.gif", "https://tenor.com/view/inosuke-running-demon-slayer-kimetsu-no-yaiba-fun-gif-20481623.gif", "https://tenor.com/view/demon-slayer-inosuke-amazed-sparkle-gif-15052588.gif", "https://tenor.com/view/inosuke-kimetsu-no-yaba-gif-15023737.gif"]
-];
-const unhappyGIFS = [
-    ["https://tenor.com/view/kawaii-anime-tongue-bleh-gif-5018411.gif", "https://giphy.com/gifs/demon-slayer-zenitsu-thundergod-VEzYdo930nTiTuVeMU.gif", "https://tenor.com/view/naruto-sasuke-mad-anime-gif-11475477.gif", "https://tenor.com/view/sasuke-thinking-anime-naruto-gif-13593873.gif", "https://tenor.com/view/llorar1-cry-sad-tears-anime-gif-5648908.gif", "https://tenor.com/view/demon-slayer-gif-20317224", "https://tenor.com/view/kimetsu-no-yaiba-demon-slayer-pig-angry-inosuke-hashibira-gif-14905892.gif"]
-];
+
 const yayGIFS = [
     ["https://tenor.com/view/goodjob-thumbsup-nice-excellent-naruto-gif-7248440.gif", ".gif", "https://tenor.com/view/asuna-sword-art-online-anime-kirito-smile-gif-15399998.gif"]
 ];
