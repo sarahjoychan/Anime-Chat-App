@@ -18,49 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
           lastPrompt.innerHTML = prompt1;
           console.log(prompt1);
       } 
-      console.log(lastPrompt.length);
   }
 
-
-
-const goodRepliesArray = [
-    ["ah yes", "yes", "sure", "ok", "okay"],
-    ["fantastic", "awesome", "incredible", "cool", "fun stuff"],
-    ["yay", "lets us do this"],
-    ["i love you"]
-];
-const badRepliesArray = [
-    ["no", "no thanks","never", "nay"],
-    ["i think i will pass", "i decline", "sorry no", "sorry no thanks"],
-    ["nope", "nada"]
-];
-const genreRepliesArray = ["action", "adventure", "cars", "comedy", "dementia", "demons", "mystery", "drama", "ecchi", "fantasy", "game", "hentai", "historical", "horror", "kids", "magic", "martial arts", "mecha", "music", "parody", "samurai", "romance", "school", "sci fi", "shoujo", "shoujo ai", "shounen", "shounen ai", "space", "sports", "super power", "vampire", "yaoi", "yuri", "harem", "slice of life", "supernatural", "military", "police", "psychological", "thriller", "seinen", "josei"];
-const confusedRepliesArray = [
-    ["what is anime"],
-    ["what are genres"],
-    ["i do not watch anime"]
-];
-
-
-const happyPromptsArray = [
-    ["Awesome!", "Fantastic!!!", "Yay!", "Wonderful!", "Awesome sauce!!"],
-    ["Yippie!!", "That's what I like to hear!"]
-];
-const unhappyPromptsArray = [
-    ["Hearing that makes me mad. So lets get glad! And find some cool anime for you to watch!!"],
-    ["I'm just gonna pretend you didn't just say that."],
-    ["(...grumble) Wow you sure are a piece of work! So I'm just gonna pretend you didn't just say that."],
-    ["We'll you should!! That's why I'm here to help you change that!"]
-    ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
-];
-const confusedPromptsArray = [
-    ["Bro.. I literally did not understand a single word you just said... How about we start-over? If so, just refresh the page!"],
-    ["How about we try this again. Just refresh the page"], 
-    ["I don't understand"], ["Do you speak english?"], ["Maybe you should go find someone that speaks english"], ["Bro I literally cant NOT understand you"], ["Do you understand the Words that are coming out of my mouth??"]
-];
-const animeGenrePrompts = ["Okay, now let's find you some cool anime! Please enter up to 3 of your favorite genres/show types. Then press enter or submit."]
-
 /* add both user-input & outputPrompts to chat-box */
+
+function findAnimeAmongGenre() {
+    animeArray = [];
+
+    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=${[1,6,8]}&order_by=title&order_by2=score/page=1`).then(res => res.json()).then(anime => {
+        animeArray.push((anime.title, anime.score));
+        console.log(`${anime.title}: ${anime.score}`);
+    });
+}
 
 function addChatToChatBox(inputReply, productOfInput) {
     const userRepliesContainer = document.getElementById("userMessages");
@@ -121,7 +90,10 @@ function outputPrompts(inputReply) {
         /*productOfInput = confusedPrompts[Math.floor(Math.random() * confusedPrompts.length)];*/
     }
     //should update Document
-    addChatToChatBox(inputReply, productOfInput);
+    setTimeout(() => {
+        addChatToChatBox(inputReply, productOfInput);
+    },3000) 
+    
 }
 
 const userReplyObj = {goodReplies:[
@@ -150,12 +122,8 @@ const animePromptsObj = {happyPrompts:[
     ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
 ], genrePrompt:"Okay, now let's find you some cool anime to watch! Please enter up to 3 of your favorite genres/show types. Then press enter and let me work my magic ;)", animeDef:[]};
 
-function findAnimeAmongGenre(genresArray) {
-    var love = [fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${genresArray}/page=1`).then(res => res.json()).then(data => {
-        (data.title);})];
-}
 
-function compare(userReplyObj, animePromptsObj, string, findGenre, findAnimeAmongGenre) {
+function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmongGenre) {
     let genresArray = [];
     let animeArray = [];
     let genreRepliesArray = userReplyObj.genreRepliesArray;
@@ -167,6 +135,32 @@ function compare(userReplyObj, animePromptsObj, string, findGenre, findAnimeAmon
     let happyPrompts = animePromptsObj.happyPrompts;
     console.log();
     console.log();
+
+ function findAnimeAmongGenre(genresArray) {
+        const array = genresArray;
+        let results;
+        let amimeArray = [];
+        let returnAnime = [];
+        let anime1;
+        let anime1a;
+        let anime2;
+        let anime2a;
+        return fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=genresArray&order_by=members&sort=desc/page=1`).then(res => res.json())this.setState({ data: response.data)).catch()
+    {
+            results = data.results;
+            returnAnime.push(results[(Math.floor(Math.random() * 50))]);
+            returnAnime.push(results[(Math.floor(Math.random() * 50))]);
+            anime1 = returnAnime[0].title;
+            anime1a = returnAnime[0].score;
+            anime2 = returnAnime[1].title;
+            anime2a = returnAnime[1].score;
+            animeArray.push(anime1, anime1a, anime2, anime2a);
+            console.log(animeArray, "hi");
+            animePromptOutput = "[Anime Option 1: " + animeArray[0] + "Animes Score: " + animeArray[1] + "] [Anime Option 2: " + animeArray[2] + "Animes Score: " + animeArray[3] + "]"
+
+        });
+        
+    }
 
     if (userReplyFound !== true) {
         for (let i = 0; i < goodReply.length; i++) {
@@ -346,39 +340,21 @@ function compare(userReplyObj, animePromptsObj, string, findGenre, findAnimeAmon
                         }
                         return genreNum;
                     } 
-                );
-                    
-                
-                }
-            } if (findAnimeAmongGenre(genresArray)) {
-                function findAnimeAmongGenre(genresArray) {
-                var love = [fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${genresArray}/page=1`).then(res => res.json()).then(data => {
-                    (data.title);})];
-                }
-                userReplyFound = true; 
-                break;
-            } 
-                animePromptOutput = animeArray[0] + ", " + animeArray[1] + " & " + animeArray[2];
-                           
-        }
+                    );
                     /* Now use this array to find the corresponding anime titles that fit the required genre that are stored in genreArray and store these new anime titles into a new array called animeArray */
-                    
-                    /* if anime is not sorted by popularity ratings then: */
-                    /* animePromptOutput = animeArray[Math.floor(Math.random() * animeArray.length)] + animeArray[Math.floor(Math.random() * animeArray.length)] + animeArray[Math.floor(Math.random() * animeArray.length)] */
-                    /* else: if anime is sorted by popularity ratings */
-        
-    }
+                if (genresArray.length !== 0) {
+                        let animeObjects = findAnimeAmongGenre(genresArray);
+                        console.log(animeArray[1]);
+                        setTimeout(() => {
+                            animePromptOutput ="[Anime Option 1: " + animeArray[0] + "Animes Score: " + animeArray[1] + "] [Anime Option 2: " + animeArray[2] + "Animes Score: " + animeArray[3] + "]"
+                        },2000)    
+                    }      
+                }  
+            }                
+    }   
+    } 
     return animePromptOutput; 
 }
-
-
-let restart = function() {
-}
-
-let genreTitle = document.getElementById('genre-title');
-
-
-
 
 const happyGIFS = [
     ["https://tenor.com/view/anime-happy-excited-gif-13451198.gif", "https://tenor.com/view/squirtle-flowers-pokemon-gif-10787608.gif", "https://tenor.com/view/inosuke-running-demon-slayer-kimetsu-no-yaiba-fun-gif-20481623.gif", "https://tenor.com/view/demon-slayer-inosuke-amazed-sparkle-gif-15052588.gif", "https://tenor.com/view/inosuke-kimetsu-no-yaba-gif-15023737.gif"]
@@ -391,22 +367,7 @@ const yayGIFS = [
 ];
 /*((genres[z] === genreRepliesArray[j]) || (genres[z-1] + genres[z] + genres[z+1] === genreRepliesArray[j]) || (genres[z-1] + genres[z] === genreRepliesArray[j])) */
 
-function findAnimeAmongGenre() {
-    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${array}/page=1`).then(res => res.json()).then(data => {
-        (data.title);
-    });
-}
-console.log(fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${[1,6,10]}/page=1`).then(res => res.json()).then(data =>(data.title)));
+console.log(fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=[1,6,10]/page=1`).then(res => res.json()).then(data =>(data.title)));
 
 
-function findAnimeAmongGenre() {
-    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&genre=${array}/page=1`).then(res => res.json()).then(data => {
-        (data.title);
-    });
-}
-/* animeArray = [];
-                    for (genre of genreArray) {
-                        genreidx = findAnimeAmongGenre(genre);
-                        animeArray.push(genreidx);
-                        console.log(animeArray);
-                    } */
+`https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=1&order_by=members&sort=desc/page=1`

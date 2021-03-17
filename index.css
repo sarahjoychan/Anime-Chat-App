@@ -89,6 +89,9 @@
     display: relative;
     font-family:'Arial Narrow';
     size: relative;
+ 
+    clear: both;
+
 }
 .chat-box #guest {
     max-width: 350px;
@@ -100,6 +103,7 @@
     display: relative;
     font-family:'Arial Narrow';
     size: relative;
+   
 }
 
 .chat-box .message p {
