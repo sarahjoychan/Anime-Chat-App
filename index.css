@@ -183,7 +183,7 @@
   /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   animation: forwardIn forwards 0.25s;
-  margin-right: 15px;
+  margin-right: 350px;
 }
 
 #anime {
@@ -224,8 +224,22 @@
 .timestamp2 {
   animation: forwardIn forwards 0.25s;
   float: right;
-  margin-right: 125px;
+  margin-right: 459px;
   font-size: small;
   color: rgba(82, 82, 82, 0.767);
   font-weight: 700;
+}
+
+.message {
+  position: fixed;
+  bottom: 100px;
+  width: 100%;
+}
+
+#promptMessages {
+  width: 100%;
+}
+
+.chat-header {
+  z-index: 1;
 }

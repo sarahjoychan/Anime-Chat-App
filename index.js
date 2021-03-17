@@ -72,27 +72,30 @@ function addChatToChatBox(productOfInput1, picture1, picture2) {
   animeGifOutput1.className = "anime picture";
   animeOutputDiv.appendChild(animeOutputText);
   console.log(picture1);
-  setTimeout(() => {
-    timestamp.innerText = `${new Date()
-      .toString()
-      .split(" ")
-      .slice(0, 5)
-      .join(" ")}`;
+  timestamp.innerText = `${new Date()
+    .toString()
+    .split(" ")
+    .slice(0, 5)
+    .join(" ")}`;
 
-    animeOutputText.innerText = `${
-      productOfInput1
-        ? productOfInput1
-        : confusedPrompts[Math.floor(Math.random() * 6)]
-    }`;
+  animeOutputText.innerText = `${
+    productOfInput1
+      ? productOfInput1
+      : confusedPrompts[Math.floor(Math.random() * 6)]
+  }`;
 
-    animeOutputDiv.appendChild(animeGifOutput1);
-    promptRepliesContainer.appendChild(animeOutputDiv);
-    promptRepliesContainer.appendChild(timestamp);
-  }, 1500);
+  animeOutputDiv.appendChild(animeGifOutput1);
+  promptRepliesContainer.appendChild(animeOutputDiv);
+  promptRepliesContainer.appendChild(timestamp);
   /*animeOutputDiv.appendChild(timeStampContainer);*/
   promptRepliesContainer.scrollTop =
     promptRepliesContainer.scrollHeight - promptRepliesContainer.clientHeight;
 }
+
+function restart() {
+  console.log("restart");
+}
+
 const confusedPrompts = [
   "I'm confused.",
   "Bro.. I literally did'nt understand a single thing you just said.",
