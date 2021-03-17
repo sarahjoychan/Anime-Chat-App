@@ -16,24 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
       let prompt1 = "Hi there! Do you like to watch anime??"
       if (lastPrompt.innerHTML.length === 0) {
           lastPrompt.innerHTML = prompt1;
-          console.log(prompt1);
       } 
   }
 
 /* add both user-input & outputPrompts to chat-box */
-
-function findAnimeAmongGenre() {
-    animeArray = [];
-
-    fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=${[1,6,8]}&order_by=title&order_by2=score/page=1`).then(res => res.json()).then(anime => {
-        animeArray.push((anime.title, anime.score));
-        console.log(`${anime.title}: ${anime.score}`);
-    });
-}
-
-function addChatToChatBox(inputReply, productOfInput) {
+function addChatToChatBoxUser(inputReply) {
     const userRepliesContainer = document.getElementById("userMessages");
-    const promptRepliesContainer = document.getElementById("promptMessages");
+
 
     /*let timeStampContainer = document.createElement("div");
     let timeCheckSpan = document.createElement("span");
@@ -51,25 +40,42 @@ function addChatToChatBox(inputReply, productOfInput) {
     userRepliesContainer.appendChild(userInputDiv);
     /*userInputDiv.appendChild(timeStampContainer);*/
 
-    let animeOutputDiv = document.createElement("div");
-    let animeGifOutput = document.createElement("img");
-    let animeOutputText = document.createElement("span");
-    animeOutputDiv.id = "anime";
-    animeGifOutput.scr = "";
-    animeGifOutput.className = "animeGif";
-    animeOutputText.innerText = `${productOfInput}`;
-    animeOutputDiv.appendChild(animeOutputText);
-    animeOutputDiv.appendChild(animeGifOutput);
-    promptRepliesContainer.appendChild(animeOutputDiv);
-    /*animeOutputDiv.appendChild(timeStampContainer);*/
-
     userRepliesContainer.scrollTop = userRepliesContainer.scrollHeight - userRepliesContainer.clientHeight;
-    promptRepliesContainer.scrollTop = promptRepliesContainer.scrollHeight - promptRepliesContainer.clientHeight;
     
 }
 
-function outputPrompts(inputReply) {
+function addChatToChatBox(productOfInput1, picture1, picture2) {
+    const promptRepliesContainer = document.getElementById("promptMessages");
+
+    /*let timeStampContainer = document.createElement("div");
+    let timeCheckSpan = document.createElement("span");
+    timeStampContainer.id = "timeStamp";
+    timeStampContainer.className = "timeStamp";
+    timeCheckSpan.className = "timeSpan";
+     timeCheckSpan.innerText = ;
+    timeStampContainer.appendChild(timeCheckSpan);*/
+
+    let animeOutputDiv = document.createElement("div");
+    let animeGifOutput1 = document.createElement("img");
+    let animeOutputText = document.createElement("span");
+    animeOutputDiv.id = "anime";
+    animeGifOutput1.scr = `${picture1}`;
+    animeGifOutput1.className = "anime picture";
+    animeOutputDiv.appendChild(animeOutputText);
+    console.log(picture1);
+    setTimeout(() => {
+        animeOutputText.innerText = `${productOfInput1}`;
+    },1500) 
+    animeOutputDiv.appendChild(animeGifOutput1);
+    promptRepliesContainer.appendChild(animeOutputDiv);
+    /*animeOutputDiv.appendChild(timeStampContainer);*/
+    promptRepliesContainer.scrollTop = promptRepliesContainer.scrollHeight - promptRepliesContainer.clientHeight;
+    
+}
+const confusedPrompts = ["I'm confuesed.", "Bro.. I literally did'nt understand a single thing you just said.", "I think you have an error in your message.", "Are you sure your speaking english?", "Try again.", "Sorry bro I only speak english.. "];
+function outputPrompts(inputReply, confusedPrompts) {
     /*make it so that you can compare the users-input with the array's of expected user-replies*/
+    let userReplyFound = false;
     let productOfInput;
     let text = inputReply.toLowerCase().replace(/\d/g, "").trim("");
     text = text
@@ -85,15 +91,13 @@ function outputPrompts(inputReply) {
         productOfInput = compare(userReplyObj, animePromptsObj, text);
     } else if (text.match(/thank/gi)) {
         productOfInput = "You're welcome!" + genrePrompt[0];
-    } else {
+    } else if (userReplyFound !== false) {
         /* if all else fails, return a confused prompt */
-        /*productOfInput = confusedPrompts[Math.floor(Math.random() * confusedPrompts.length)];*/
+        productOfInput = "Sorry bro, I only understand 'yes', 'no', 'genres' or a reasonable facsimile thereof. =)";
     }
     //should update Document
-    setTimeout(() => {
-        addChatToChatBox(inputReply, productOfInput);
-    },3000) 
-    
+    addChatToChatBox(productOfInput);
+    return addChatToChatBoxUser(inputReply); 
 }
 
 const userReplyObj = {goodReplies:[
@@ -105,11 +109,8 @@ const userReplyObj = {goodReplies:[
     ["no", "no thanks","never", "nay"],
     ["i think i will pass", "i decline", "sorry no", "sorry no thanks"],
     ["nope", "nada"]
-], genreRepliesArray:["action", "adventure", "cars", "comedy", "dementia", "demons", "mystery", "drama", "ecchi", "fantasy", "game", "hentai", "historical", "horror", "kids", "magic", "martial arts", "mecha", "music", "parody", "samurai", "romance", "school", "sci fi", "shoujo", "shoujo ai", "shounen", "shounen ai", "space", "sports", "super power", "vampire", "yaoi", "yuri", "harem", "slice of life", "supernatural", "military", "police", "psychological", "thriller", "seinen", "josei"], confusedReplies:[
-    ["what is anime"],
-    ["what are genres"],
-    ["i do not watch anime"]
-]};
+], genreRepliesArray:["action", "adventure", "cars", "comedy", "dementia", "demons", "mystery", "drama", "ecchi", "fantasy", "game", "hentai", "historical", "horror", "kids", "magic", "martial arts", "mecha", "music", "parody", "samurai", "romance", "school", "sci fi", "shoujo", "shoujo ai", "shounen", "shounen ai", "space", "sports", "super power", "vampire", "yaoi", "yuri", "harem", "slice of life", "supernatural", "military", "police", "psychological", "thriller", "seinen", "josei"]
+};
 
 const animePromptsObj = {happyPrompts:[
     ["Awesome!", "Fantastic!!!", "Yay!", "Wonderful!", "Awesome sauce!!"],
@@ -120,7 +121,10 @@ const animePromptsObj = {happyPrompts:[
     ["(...grumble) Wow you sure are a piece of work! So I'm just gonna pretend you didn't just say that."],
     ["We'll you should!! That's why I'm here to help you change that!"]
     ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
-], genrePrompt:"Okay, now let's find you some cool anime to watch! Please enter up to 3 of your favorite genres/show types. Then press enter and let me work my magic ;)", animeDef:[]};
+], genrePrompt:"Now let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres. Step 2: Press enter and let me work my magic ;)"};
+
+confusedPrompts:["I'm confuesed.", "Bro.. I literally did'nt understand a single thing you just said.", "I think you have an error in your message.", "Are you sure your speaking english?", "Try again.", "Sorry bro I only speak english.. "];
+    
 
 
 function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmongGenre) {
@@ -130,11 +134,9 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
     let goodReply = userReplyObj.goodReplies;
     let badReply = userReplyObj.badReplies;
     let userReplyFound = false;
-    let animePromptOutput;
+    let productOfInput;
     let unhappyPrompts = animePromptsObj.unhappyPrompts;
     let happyPrompts = animePromptsObj.happyPrompts;
-    console.log();
-    console.log();
 
  function findAnimeAmongGenre(genresArray) {
         const array = genresArray;
@@ -145,18 +147,23 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
         let anime1a;
         let anime2;
         let anime2a;
+        let picture1;
+        let picture2;
         return fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=genresArray&order_by=members&sort=desc/page=1`).then(res => res.json()).then(function (data) {
             results = data.results;
             returnAnime.push(results[(Math.floor(Math.random() * 50))]);
             returnAnime.push(results[(Math.floor(Math.random() * 50))]);
             anime1 = returnAnime[0].title;
             anime1a = returnAnime[0].score;
+            picture1 = returnAnime[0].image_url;
             anime2 = returnAnime[1].title;
             anime2a = returnAnime[1].score;
             animeArray.push(anime1, anime1a, anime2, anime2a);
-            console.log(animeArray, "hi");
-            animePromptOutput = "[Anime Option 1: " + animeArray[0] + "Animes Score: " + animeArray[1] + "] [Anime Option 2: " + animeArray[2] + "Animes Score: " + animeArray[3] + "]"
-
+            console.log(results, "hi");
+            productOfInput ="Anime Option 1: " + animeArray[0] + "Rating:" + animeArray[1] + " Anime Option 2: " + animeArray[2] + "Rating: " + animeArray[3] + "";
+            
+            addChatToChatBox(productOfInput, picture1);
+            
         });
         
     }
@@ -167,7 +174,7 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                 if (goodReply[i][x] === string) {
                     console.log(animePromptsObj.happyPrompts[i]);
                     let animeReply = animePromptsObj.happyPrompts[i];
-                    animePromptOutput = animeReply[Math.floor(Math.random() * animeReply.length)] + " " + animePromptsObj.genrePrompt;
+                    productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + " " + animePromptsObj.genrePrompt;
                     userReplyFound = true;
                     break;
                 }
@@ -184,7 +191,7 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                 if (badReply[y][k] === string) {
                     console.log(unhappyPrompts[y]);
                     let animeReply = animePromptsObj.unhappyPrompts[y];
-                    animePromptOutput = animeReply[Math.floor(Math.random() * animeReply.length)] + animePromptsObj.genrePrompt;
+                    productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + animePromptsObj.genrePrompt;
                     userReplyFound = true;
                     break;
                 }
@@ -342,17 +349,18 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                     );
                     /* Now use this array to find the corresponding anime titles that fit the required genre that are stored in genreArray and store these new anime titles into a new array called animeArray */
                 if (genresArray.length !== 0) {
+                        userReplyFound = true;
                         let animeObjects = findAnimeAmongGenre(genresArray);
                         console.log(animeArray[1]);
                         setTimeout(() => {
-                            animePromptOutput ="[Anime Option 1: " + animeArray[0] + "Animes Score: " + animeArray[1] + "] [Anime Option 2: " + animeArray[2] + "Animes Score: " + animeArray[3] + "]"
+                            productOfInput ="Anime Option 1: " + animeArray[0] + "Rating:" + animeArray[1] + "Anime Option 2: " + animeArray[2] + "Rating: " + animeArray[3] + ""
                         },2000)    
                     }      
                 }  
             }                
     }   
     } 
-    return animePromptOutput; 
+    return productOfInput; 
 }
 
 const happyGIFS = [
