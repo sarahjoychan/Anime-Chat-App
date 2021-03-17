@@ -18,9 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 /* 1) if no prompt exsists post intial prompt
     2) if there is a prompt callback function newPrompt()*/
+const prompt1 = "Hi there! Do you like to watch anime??";
 var lastPrompt = document.getElementById("promptMessages");
 function checkIfTheresAPrompt() {
-  let prompt1 = "Hi there! Do you like to watch anime??";
+  
   if (lastPrompt.innerHTML.length === 0) {
     lastPrompt.innerHTML = prompt1;
   }
@@ -106,6 +107,7 @@ function restart() {
   // promptRepliesContainer.remove();
 
   $("#promptMessages").empty();
+  lastPrompt.innerHTML = prompt1;
 }
 
 const confusedPrompts = [
