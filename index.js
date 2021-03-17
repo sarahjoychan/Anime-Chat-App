@@ -40,9 +40,9 @@ function addChatToChatBoxUser(inputReply) {
     const userRepliesContainer = document.getElementById("userMessages");
 
     /* add timeStamp to user messages*/
-    let timeStamp = document.createElement("div");
-    timeStamp.className = "timeStamp2";
-    timeStamp.innerText = `${new Date()
+    let timeStamp2 = document.createElement("div");
+    timeStamp2.className = "timeStamp2";
+    timeStamp2.innerText = `${new Date()
         .toString()
         .split(" ")
         .slice(0,5)
@@ -53,7 +53,7 @@ function addChatToChatBoxUser(inputReply) {
     userInputDiv.className = "guest response";
     userInputDiv.innerHTML = `<span>${inputReply}</span>`;
     userRepliesContainer.appendChild(userInputDiv);
-    userRepliesContainer.appendChild(timeStamp);
+    userRepliesContainer.appendChild(timeStamp2);
 
     userRepliesContainer.scrollTop = userRepliesContainer.scrollHeight - userRepliesContainer.clientHeight; 
 }
