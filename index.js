@@ -94,6 +94,11 @@ function addChatToChatBox(productOfInput1, picture1, picture2) {
 
 function restart() {
   console.log("restart");
+
+  // const promptRepliesContainer = document.getElementById("promptMessages");
+  // promptRepliesContainer.remove();
+
+  $("#promptMessages").empty();
 }
 
 const confusedPrompts = [
