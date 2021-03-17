@@ -52,7 +52,7 @@
     flex: 1;
     background: url('../');
     background-attachment: fixed;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     overflow-y: scroll;
     background-color:lavenderblush;
 }
@@ -91,6 +91,9 @@
     size: relative;
 
     clear: both;
+
+    margin-left: 30px;
+
 
 }
 .chat-box #guest {
@@ -183,7 +186,7 @@
   /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   animation: forwardIn forwards 0.25s;
-  margin-right: 15px;
+  margin-right: 35px;
 }
 
 #anime {
@@ -243,3 +246,17 @@
 .chat-header {
   z-index: 1;
 }
+
+#gradient {
+  position:relative;
+  z-index:2;
+  right:0; top:0; left:0;
+  height:200px; /* adjust it to your needs */
+  background: url(data:image/svg+xml;base64,alotofcodehere);
+  background: -moz-linear-gradient(bottom,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
+  background: -webkit-gradient(linear, left bottom, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(70%,rgba(255,255,255,1)));
+  background: -webkit-linear-gradient(bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 70%);
+  background: -o-linear-gradient(bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 70%);
+  background: -ms-linear-gradient(bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 70%);
+  background: linear-gradient(to top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 70%);
+}​
