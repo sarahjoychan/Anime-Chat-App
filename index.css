@@ -52,7 +52,9 @@
     margin-left: 10px;
     height: 50px;
     font-size: large;
+
 }
+
 
 #reset:hover {
   background-color: red;
@@ -106,6 +108,8 @@
 
     margin-left: 30px;
 
+    animation: forwardIn2 forwards 0.75s;
+    animation-iteration-count: infinite;
 
 }
 .chat-box #guest {
@@ -227,6 +231,20 @@
     transform: scale(1);
   }
 }
+
+
+@keyframes forwardIn2 {
+  0% {
+color: red
+  }
+  50% {
+    color: orange;
+  }
+  100% {
+  color: green
+  }
+}
+
 
 .timestamp {
   animation: forwardIn forwards 0.25s;
