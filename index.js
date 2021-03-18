@@ -40,9 +40,9 @@ function addChatToChatBoxUser(inputReply) {
     const userRepliesContainer = document.getElementById("userMessages");
 
     /* add timeStamp to user messages*/
-    let timeStamp2 = document.createElement("div");
-    timeStamp2.className = "timeStamp2";
-    timeStamp2.innerText = `${new Date()
+    let timestamp2 = document.createElement("div");
+    timestamp2.className = "timestamp2";
+    timestamp2.innerText = `${new Date()
         .toString()
         .split(" ")
         .slice(0,5)
@@ -53,39 +53,32 @@ function addChatToChatBoxUser(inputReply) {
     userInputDiv.className = "guest response";
     userInputDiv.innerHTML = `<span>${inputReply}</span>`;
     userRepliesContainer.appendChild(userInputDiv);
-    userRepliesContainer.appendChild(timeStamp2);
+    userRepliesContainer.appendChild(timestamp2);
 
     userRepliesContainer.scrollTop = userRepliesContainer.scrollHeight - userRepliesContainer.clientHeight; 
 }
 
-function addChatToChatBox(productOfInput, anime1Pic, anime2Pic, gifReply) {
+function addChatToChatBox(productOfInput) {
     const promptRepliesContainer = document.getElementById("promptMessages");
 
     let animeOutputDiv = document.createElement("div");
-    let animeGifOutput = document.createElement("img");
     let animeOutputText = document.createElement("span");
 
-    let timeStamp = document.createElement("div");
-    timeStamp.className = "timeStamp"
-    timeStamp.innerText = `${new Date()
+    let timestamp = document.createElement("div");
+    timestamp.className = "timestamp"
+    timestamp.innerText = `${new Date()
         .toString()
         .split(" ")
         .slice(0,5)
         .join(" ")}`;
 
     animeOutputDiv.id = "anime";
-    animeGifOutput.scr = `${gifReply}`;
-    console.log(gifReply);
-    animeGifOutput.className = "anime picture";
-
     animeOutputDiv.appendChild(animeOutputText);
     /* if product of input does not match any expected input, return a confused prompt*/
-    animeOutputText.innerText = `${
-        productOfInput ? productOfInput : confusedPrompts[Math.floor(Math.random() * 6)]}`;
+    animeOutputText.innerText = `${productOfInput}`;
     
-    animeOutputDiv.appendChild(animeGifOutput);
     promptRepliesContainer.appendChild(animeOutputDiv);
-    promptRepliesContainer.appendChild(timeStamp);
+    promptRepliesContainer.appendChild(timestamp);
 
     promptRepliesContainer.scrollTop = promptRepliesContainer.scrollHeight - promptRepliesContainer.clientHeight;
 }
@@ -93,7 +86,7 @@ function addChatToChatBox(productOfInput, anime1Pic, anime2Pic, gifReply) {
 const confusedPrompts = ["I'm confuesed.", "Bro.. I literally did'nt understand a single thing you just said.", "I think you have an error in your message.", "Are you sure your speaking english?", "Try again.", "Sorry bro I only speak english.. "];
 
 
-function outputPrompts(inputReply, confusedPrompts) {
+function outputPrompts(inputReply) {
     /*make it so that you can compare the users-input with the array's of expected user-replies*/
     let userReplyFound = false;
     let productOfInput;
@@ -107,9 +100,9 @@ function outputPrompts(inputReply, confusedPrompts) {
     .replace(/r u/g, "are you")
     .replace(/\?/g, '-');
 
-    if (compare(userReplyObj, animePromptsObj, animeGifs, text)) {
+    if (compare(userReplyObj, animePromptsObj, text)) {
         /* search for excat match in compare function*/
-        productOfInput = compare(userReplyObj, animePromptsObj, animeGifs, text);
+        productOfInput = compare(userReplyObj, animePromptsObj, text);
     } else if (text.match(/thank/gi)) {
         productOfInput = "You're welcome!" + genrePrompt[0];
     } else if (userReplyFound !== false) {
@@ -140,19 +133,17 @@ const animePromptsObj = {happyPrompts:[
     ["Awesome!", "Fantastic!!!", "Yay!", "Wonderful!", "Awesome sauce!!"],
     ["Yippie!!", "That's what I like to hear!"]
 ], unhappyPrompts:[
-    ["Hearing that makes me mad. So lets get glad! And find some cool anime for you to watch!!"],
+    ["Hearing that makes me mad. So lets get glad!"],
     ["I'm just gonna pretend you didn't just say that."],
-    ["(...grumble) Wow you sure are a piece of work! So I'm just gonna pretend you didn't just say that."],
+    ["Dang bro!... You sure are a piece of work homie. Let's just pretend you didn't say that. Anyhoo "],
     ["We'll you should!! That's why I'm here to help you change that!"]
     ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
-], genrePrompt:" Now let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre seperated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"};
+], genrePrompt:" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre seperated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"};
 
 confusedPrompts:["I'm confuesed.", "Bro.. I literally did'nt understand a single thing you just said.", "I think you have an error in your message.", "Are you sure your speaking english?", "Try again.", "Sorry bro I only speak english.. "];
-    
-const animeGifs = {happyGIFS:["https://tenor.com/view/anime-happy-excited-gif-13451198.gif", "https://tenor.com/view/squirtle-flowers-pokemon-gif-10787608.gif", "https://tenor.com/view/inosuke-running-demon-slayer-kimetsu-no-yaiba-fun-gif-20481623.gif", "https://tenor.com/view/demon-slayer-inosuke-amazed-sparkle-gif-15052588.gif", "https://tenor.com/view/inosuke-kimetsu-no-yaba-gif-15023737.gif"], unhappyGIFS:["https://tenor.com/view/kawaii-anime-tongue-bleh-gif-5018411.gif", "https://giphy.com/gifs/demon-slayer-zenitsu-thundergod-VEzYdo930nTiTuVeMU.gif", "https://tenor.com/view/naruto-sasuke-mad-anime-gif-11475477.gif", "https://tenor.com/view/sasuke-thinking-anime-naruto-gif-13593873.gif", "https://tenor.com/view/llorar1-cry-sad-tears-anime-gif-5648908.gif", "https://tenor.com/view/demon-slayer-gif-20317224", "https://tenor.com/view/kimetsu-no-yaiba-demon-slayer-pig-angry-inosuke-hashibira-gif-14905892.gif"]}
 
 
-function compare(userReplyObj, animePromptsObj, animeGifs, string, _findGenre, findAnimeAmongGenre) {
+function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmongGenre) {
     let genresArray = [];
     let animeArray = [];
     let genreRepliesArray = userReplyObj.genreRepliesArray;
@@ -160,9 +151,6 @@ function compare(userReplyObj, animePromptsObj, animeGifs, string, _findGenre, f
     let badReply = userReplyObj.badReplies;
     let unhappyPrompts = animePromptsObj.unhappyPrompts;
     let happyPrompts = animePromptsObj.happyPrompts;
-    let happyGIFS = animeGifs.happyGIFS;
-    let unhappyGIFS = animeGifs.unhappyGIFS;
-    let gifOutput;
     let productOfInput;
     let userReplyFound = false;
 
@@ -175,23 +163,19 @@ function compare(userReplyObj, animePromptsObj, animeGifs, string, _findGenre, f
         let anime1a;
         let anime2;
         let anime2a;
-        let anime1Pic;
-        let anime2Pic;
         return fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=genresArray&order_by=members&sort=desc/page=1`).then(res => res.json()).then(function (data) {
             results = data.results;
             returnAnime.push(results[(Math.floor(Math.random() * 50))]);
             returnAnime.push(results[(Math.floor(Math.random() * 50))]);
             anime1 = returnAnime[0].title;
             anime1a = returnAnime[0].score;
-            anime1Pic = returnAnime[0].image_url;
             anime2 = returnAnime[1].title;
             anime2a = returnAnime[1].score;
-            anime2Pic = returnAnime[1].image_url;
             animeArray.push(anime1, anime1a, anime2, anime2a);
             console.log(results, "hi");
             productOfInput ="Anime Option 1: '" + animeArray[0] + "'  Rating: " + animeArray[1] + "  Anime Option 2: '"  + animeArray[2] + "'  Rating: " + animeArray[3] + "";
             
-            addChatToChatBox(productOfInput, anime1Pic, anime2Pic);  
+            addChatToChatBox(productOfInput);  
         });
     }
 
@@ -202,10 +186,6 @@ function compare(userReplyObj, animePromptsObj, animeGifs, string, _findGenre, f
 
                     let animeReply = animePromptsObj.happyPrompts[i];
                     productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + " " + animePromptsObj.genrePrompt;
-
-                    let gif = animeGifs.happyGIFS[i];
-                    console.log(animeGifs.happyGIFS[i]);
-                    gifReply = gif[Math.floor(Math.random() * 5)];
 
                     userReplyFound = true;
                     break;
@@ -224,10 +204,6 @@ function compare(userReplyObj, animePromptsObj, animeGifs, string, _findGenre, f
 
                     let animeReply = animePromptsObj.unhappyPrompts[y];
                     productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + animePromptsObj.genrePrompt;
-
-                    let gif = animeGifs.unhappyGIFS[y];
-                    console.log(animeGifs.unhappyGIFS[y]);
-                    gifReply = gif[Math.floor(Math.random() * 7)];
                     
                     userReplyFound = true;
                     break;
@@ -400,11 +376,16 @@ function compare(userReplyObj, animePromptsObj, animeGifs, string, _findGenre, f
     return productOfInput; 
 }
 
-
-const yayGIFS = [
-    ["https://tenor.com/view/goodjob-thumbsup-nice-excellent-naruto-gif-7248440.gif", ".gif", "https://tenor.com/view/asuna-sword-art-online-anime-kirito-smile-gif-15399998.gif"]
-];
+/* Code Sources:
+Poopongpanit, B (March 2021) Web Post / https://levelup.gitconnected.com/how-to-create-a-simple-web-app-using-javascript-d27b28459fad
+Walters, M (March 2021) Web Post Comment Section https://stackoverflow.com/questions/10211145/getting-current-date-and-time-in-javascript?fbclid=IwAR1819ozMNV7m0IWpl4TEzXpSML1FOy_J2unrv0QLnAIVyQlLugyLqcFwso
+(March 2021) https://www.w3schools.com/jsref/prop_element_lastelementchild.asp
+(March 2021) https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+API Anime Source https://jikan.docs.apiary.io/#reference/0/search/meta-request-example+schema
+Pap, S (March 2021) GitHub Source / https://github.com/sylviapap/chatbot/blob/master/index.js
+*/
 
 
 /* fetch statement used: it seaches for tv anime shows based on the genres inputed and returns the most highly rated shows through the api's 'order_by' and sort methods
 `https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=1&order_by=members&sort=desc/page=1`*/
+

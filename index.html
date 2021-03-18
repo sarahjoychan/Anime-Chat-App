@@ -1,65 +1,93 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <script defer src="index.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <title>Happy Anime Chat</title>
-      <link rel="stylesheet" href="index.css">
-
-    </head>
-    <body onload="checkIfTheresAPrompt()">
-        <div class="container">
-            <div class="chat">
-                <div class="chat-header"> 
-                    <img src="https://tenor.com/view/ninja-naruto-run-leap-gif-4574927.gif" alt="naruto leaping gif">
-                    <span></span>
-                    <img src="https://tenor.com/view/celebrate-shinkoukei-mashiro-dancing-gif-4909808.gif" alt="anime dancing gif">
-                    <span></span>
-                    <img src="https://tenor.com/view/squirtle-pikachu-pokemon-dancing-happy-gif-15646320.gif" alt="pokemon dancing gif">
-                    <span></span>
-                    <img src="https://tenor.com/view/anime-love-smiling-menhera-hearts-gif-12479110.gif" alt="I love anime gif">
-                    <span></span>
-                    <img src="https://tenor.com/view/winry-full-metal-alchemist-fma-dancing-anime-gif-17776113.gif" alt="Winry Full Metal Alchemist GIF">
-                    <span></span>
-                    <img src="https://tenor.com/view/naruto-ramen-rock-lee-eat-gif-17993552.gif" alt="Naruto & Rock Lee eating ramen gif">
-                    <span></span>
-                    <img src="https://tenor.com/view/gai-kakashi-gif-18710613.gif" alt="Gai Kakashi GIF">
-                </div>
-                <div class="chat-header">
-                    <h3>HELLO ALL CURRENT AND SOON TO BE ANIME LOVERS!!!</h3>
-                    <input  type="reset" id="reset" value="restart" onclick="restart()">   
-                </div>
-
-
-                <div class="chat-box" id="chat-box" >
-    
-                    <div class="chat-myside">
-                        <div class="message">
-                            <div class="animeSide" id="promptMessages"></div> 
-                        </div>
-                        <div class="sp"></div>
-                    </div>
-
-                    <div class="chat-user-side" id="input-section">
-                        <div class="sp"></div>
-                        <div class="message">
-                            <div class="user-side" id="userMessages"></div> 
-                        </div>   
-                            </div>
-                        </div>
-                    </div>
-    
-                </div>
-
-                <div class="chat-footer">  
-                    <div class="user">
-                        <input id="input" type="text" value="" autocomplete="off">
-                    </div>   
-                </div>
-
-            </div>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="index.js"></script>
+    <title>Happy Anime Chat</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body onload="checkIfTheresAPrompt()">
+    <div class="container">
+      <div class="chat">
+        <div class="chat-header">
+          <img
+            src="https://tenor.com/view/ninja-naruto-run-leap-gif-4574927.gif"
+            alt="naruto leaping gif"
+          />
+          <span></span>
+          <img
+            src="https://tenor.com/view/celebrate-shinkoukei-mashiro-dancing-gif-4909808.gif"
+            alt="anime dancing gif"
+          />
+          <span></span>
+          <img
+            src="https://tenor.com/view/squirtle-pikachu-pokemon-dancing-happy-gif-15646320.gif"
+            alt="pokemon dancing gif"
+          />
+          <span></span>
+          <img
+            src="https://tenor.com/view/anime-love-smiling-menhera-hearts-gif-12479110.gif"
+            alt="I love anime gif"
+          />
+          <span></span>
+          <img
+            src="https://tenor.com/view/winry-full-metal-alchemist-fma-dancing-anime-gif-17776113.gif"
+            alt="Winry Full Metal Alchemist GIF"
+          />
+          <span></span>
+          <img
+            src="https://tenor.com/view/naruto-ramen-rock-lee-eat-gif-17993552.gif"
+            alt="Naruto & Rock Lee eating ramen gif"
+          />
+          <span></span>
+          <img
+            src="https://tenor.com/view/gai-kakashi-gif-18710613.gif"
+            alt="Gai Kakashi GIF"
+          />
         </div>
-        
-    </body>
-</html> 
+        <div class="chat-header">
+          <h3>HELLO ALL CURRENT AND SOON TO BE ANIME LOVERS!!!</h3>
+          <input type="reset" id="reset" value="restart" onclick="restart()" />
+        </div>
 
+        <div class="chat-box" id="chat-box">
+          <div class="chat-myside">
+            <div class="message">
+              <div class="animeSide" id="promptMessages"></div>
+            </div>
+            <div class="sp"></div>
+          </div>
+
+          <div class="chat-user-side" id="input-section">
+            <div class="sp"></div>
+            <div class="message" id="userMessages">
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-footer">
+          <div class="user">
+            <input id="input" type="text" value="" autocomplete="off" /><button
+              onclick="{submitMessage()}"
+              id="sendButton"
+            >
+              send
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+Source Code:
+<!--
+  Source Code:
+  Abdurrahman, E (March 2021) GitHub source code / https://github.com/codingWithElias/ChatBox-UI-Like-Whatsapp/blob/master/css/style.css 
+-->

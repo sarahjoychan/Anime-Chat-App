@@ -6,7 +6,7 @@
 .container {
     width: auto;
     margin: auto;
-} 
+}
 .chat {
     display: flex;
     flex-direction: column;
@@ -17,16 +17,16 @@
     display: flex;
     cursor: pointer;
     width: 100%;
-    background-color: lightsteelblue;
+    background-color:paleturquoise;
     display: flex;
     align-items: center;
     height: 65px;
     position: centered;
     display: relative;
-    
+
 }
 .chat-header img {
-   max-width: auto; 
+   max-width: auto;
    max-height: 85px;
    margin-left: 0%;
    border-radius: 5px;
@@ -41,97 +41,82 @@
     font-weight: bold;
     margin-top: 10px;
     font-size: 175%;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif 
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 .chat-header #reset{
     margin-right: 0%;
     align-items:stretch;
-    width: 50px;
+    width: 100px;
     margin-left: 10px;
-    height: 25px;
-    font-size: normal;
-    font-weight: bold;
+    height: 50px;
+    font-size: large;
 }
+
 #reset:hover {
-    background-color:lightcoral;
-    color: white;
-    border: solid white 1px;
-  }
+  background-color:lightcoral;
+  color: white;
+  border: solid white 1px;
+}
 
 .chat-box {
     flex: 1;
     background: url('../');
     background-attachment: fixed;
-    padding-left: 20px;
     overflow-y: scroll;
-    background-color:lavenderblush;
+    background-color:lightgreen;
 }
-.chat-r {
-    display: flex;
-}
-.chat-r .sp {
-    flex: 1;
 
-}
-.chat-l {
-    display: flex;
-}
 .chat-box #anime {
     max-width: 350px;
     min-width: relative;
     max-height: relative;
-    background: paleturquoise;
     padding: auto;
     border-radius: auto;
-    margin-right: auto; 
+    margin-right: auto;
     display: relative;
     font-family:'Arial Narrow';
     size: relative;
 }
 .chat-box #promptMessages {
-    max-width: 350px;
-    min-width: relative;
-    max-height: relative;
-    background: paleturquoise;
     padding: auto;
     border-radius: auto;
-    margin-right: auto; 
+    margin-right: auto;
     display: relative;
     font-family:'Arial Narrow';
     size: relative;
- 
     clear: both;
-
+    margin-left: 30px;
+    margin-bottom: 25px;
 }
 .chat-box #guest {
     max-width: 350px;
     max-height: relative;
-    background: lemonchiffon;
+    background-color:whitesmoke;
     padding: auto;
     border-radius: auto;
-    margin-left: auto;  
+    margin-left: auto;
     display: relative;
     font-family:'Arial Narrow';
     size: relative;
-   
+
 }
 
 .chat-box .message p {
     word-break: normal;
     font-size: 18px;
 }
-.chat-animeSide .anime {
-    max-width: 300px;
-    max-height: relative;
-    border-radius: 15px;
-} 
-.chat-myside .check {
-    float: right;
+
+.chat-user-side {
+  position: relative;
+  top: 0;
+  right: 0;
 }
-.chat-user-side .check {
-    float: left;
+
+.chat-myside {
+  margin-bottom: 200px;
 }
-.chat-box .timeStamp span {  
+
+.chat-box .timeStamp span {
     font-size: 12px;
     font-weight: 700px;
 }
@@ -140,8 +125,8 @@
     position: relative;
     cursor: pointer;
     height: min-content;
-    padding-bottom: 20px;
-    background-color: lightsteelblue;
+    /* padding-bottom: 20px; */
+    background-color:paleturquoise;
 }
 .chat-footer textarea {
     position: static;
@@ -173,3 +158,117 @@
 *::-webkit-scrollbar-track {
 	background: #f1f1f1;
 }
+
+#guest {
+  margin-top: 30px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  animation: forwardIn forwards 0.25s;
+  margin-right: 35px;
+}
+
+#anime {
+  margin-top: 30px;
+  background-color: paleturquoise;
+  /* border: solid 0.25px rgba(0, 0, 0, 0.219); */
+  border-radius: 5px;
+  text-align: center;
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  animation: forwardIn forwards 0.25s;
+}
+
+
+#promptMessages {
+  width: 100%;
+}
+
+
+@keyframes forwardIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+.timestamp {
+  animation: forwardIn forwards 0.25s;
+  margin-left: 105px;
+  font-size: small;
+  color: rgba(82, 82, 82, 0.767);
+  font-weight: 700;
+}
+
+.timestamp2 {
+  animation: forwardIn forwards 0.25s;
+  float: right;
+  margin-right: 125px;
+  font-size: small;
+  color: rgba(82, 82, 82, 0.767);
+  font-weight: 700;
+
+}
+
+.message {
+  position: fixed;
+  bottom: 100px;
+  width: 1085px;
+
+}
+
+#promptMessages {
+  width: 100%;
+}
+
+.chat-header {
+  z-index: 1;
+}
+
+#input {
+  font-size: x-large;
+  width: 500px;
+}
+
+.chat-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+#sendButton {
+  height: 40px;
+  margin-left: 5px;
+  width: 100px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#sendButton:hover {
+  border: solid white 1px;
+  background-color: green;
+  color: white;
+}
+
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*
+Source Code:
+Abdurrahman, E (March 2021) GitHub source code / https://github.com/codingWithElias/ChatBox-UI-Like-Whatsapp/blob/master/css/style.css
+(March 2021) https://getcssscan.com/css-box-shadow-examples
+(March 2021) https://css-tricks.com/snippets/css/keyframe-animation-syntax/?fbclid=IwAR1gUCIS4BJL5eTz_u5ykyRUabauZWIVRVY8TT4dO3c0rnp-8N4V9FkOek4
+*/
