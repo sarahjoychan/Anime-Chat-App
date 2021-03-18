@@ -11,15 +11,13 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-
-
 }
 
 .chat-header {
     display: flex;
     cursor: pointer;
     width: 100%;
-    background-color: lightsteelblue;
+    background-color:paleturquoise;
     display: flex;
     align-items: center;
     height: 65px;
@@ -52,12 +50,10 @@
     margin-left: 10px;
     height: 50px;
     font-size: large;
-
 }
 
-
 #reset:hover {
-  background-color: red;
+  background-color:lightcoral;
   color: white;
   border: solid white 1px;
 }
@@ -66,25 +62,14 @@
     flex: 1;
     background: url('../');
     background-attachment: fixed;
-    /* padding-left: 20px; */
     overflow-y: scroll;
-    background-color:lavenderblush;
+    background-color:lightgreen;
 }
-.chat-r {
-    display: flex;
-}
-.chat-r .sp {
-    flex: 1;
 
-}
-.chat-l {
-    display: flex;
-}
 .chat-box #anime {
     max-width: 350px;
     min-width: relative;
     max-height: relative;
-    /* background: paleturquoise; */
     padding: auto;
     border-radius: auto;
     margin-right: auto;
@@ -93,27 +78,20 @@
     size: relative;
 }
 .chat-box #promptMessages {
-    /* max-width: 350px;
-    min-width: relative;
-    max-height: relative; */
-    /* background: paleturquoise; */
     padding: auto;
     border-radius: auto;
     margin-right: auto;
     display: relative;
     font-family:'Arial Narrow';
     size: relative;
-
     clear: both;
-
     margin-left: 30px;
-margin-bottom: 25px;
-
+    margin-bottom: 25px;
 }
 .chat-box #guest {
     max-width: 350px;
     max-height: relative;
-    background: lemonchiffon;
+    background-color:whitesmoke;
     padding: auto;
     border-radius: auto;
     margin-left: auto;
@@ -127,17 +105,7 @@ margin-bottom: 25px;
     word-break: normal;
     font-size: 18px;
 }
-.chat-animeSide .animeGIF {
-    max-width: 300px;
-    max-height: relative;
-    border-radius: 15px;
-}
-.chat-myside .check {
-    float: right;
-}
-.chat-user-side .check {
-    float: left;
-}
+
 .chat-user-side {
   position: relative;
   top: 0;
@@ -158,7 +126,7 @@ margin-bottom: 25px;
     cursor: pointer;
     height: min-content;
     /* padding-bottom: 20px; */
-    background-color: lightsteelblue;
+    background-color:paleturquoise;
 }
 .chat-footer textarea {
     position: static;
@@ -192,12 +160,9 @@ margin-bottom: 25px;
 }
 
 #guest {
-  /* width: 100%; */
   margin-top: 30px;
-  /* border: solid 0.25px rgba(0, 0, 0, 0.219); */
   border-radius: 5px;
   text-align: center;
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   animation: forwardIn forwards 0.25s;
   margin-right: 35px;
@@ -301,4 +266,11 @@ margin-bottom: 25px;
   justify-content: center;
   align-items: center;
 }
+/*
+Source Code:
+Abdurrahman, E (March 2021) GitHub source code / https://github.com/codingWithElias/ChatBox-UI-Like-Whatsapp/blob/master/css/style.css
 
+(March 2021) https://getcssscan.com/css-box-shadow-examples
+
+(March 2021) https://css-tricks.com/snippets/css/keyframe-animation-syntax/?fbclid=IwAR1gUCIS4BJL5eTz_u5ykyRUabauZWIVRVY8TT4dO3c0rnp-8N4V9FkOek4
+*/

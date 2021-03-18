@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } 
     });
   });
-  
+
 /* 1) if no prompt exsists post intial prompt
     2) if there is a prompt callback function newPrompt()*/
 const prompt1 = "Hi there! Do you like to watch anime??";
@@ -100,9 +100,9 @@ function outputPrompts(inputReply, confusedPrompts) {
     .replace(/r u/g, "are you")
     .replace(/\?/g, '-');
 
-    if (compare(userReplyObj, animePromptsObj, animeGifs, text)) {
+    if (compare(userReplyObj, animePromptsObj, text)) {
         /* search for excat match in compare function*/
-        productOfInput = compare(userReplyObj, animePromptsObj, animeGifs, text);
+        productOfInput = compare(userReplyObj, animePromptsObj, text);
     } else if (text.match(/thank/gi)) {
         productOfInput = "You're welcome!" + genrePrompt[0];
     } else if (userReplyFound !== false) {
@@ -133,12 +133,12 @@ const animePromptsObj = {happyPrompts:[
     ["Awesome!", "Fantastic!!!", "Yay!", "Wonderful!", "Awesome sauce!!"],
     ["Yippie!!", "That's what I like to hear!"]
 ], unhappyPrompts:[
-    ["Hearing that makes me mad. So lets get glad! And find some cool anime for you to watch!!"],
+    ["Hearing that makes me mad. So lets get glad!"],
     ["I'm just gonna pretend you didn't just say that."],
-    ["(...grumble) Wow you sure are a piece of work! So I'm just gonna pretend you didn't just say that."],
+    ["Dang bro!... You sure are a piece of work homie. Let's just pretend you didn't say that. Anyhoo "],
     ["We'll you should!! That's why I'm here to help you change that!"]
     ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
-], genrePrompt:" Now let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre seperated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"};
+], genrePrompt:" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre seperated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"};
 
 confusedPrompts:["I'm confuesed.", "Bro.. I literally did'nt understand a single thing you just said.", "I think you have an error in your message.", "Are you sure your speaking english?", "Try again.", "Sorry bro I only speak english.. "];
 
@@ -375,6 +375,21 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
     } 
     return productOfInput; 
 }
+
+/* Code Sources:
+Poopongpanit, B (March 2021) Web Post / https://levelup.gitconnected.com/how-to-create-a-simple-web-app-using-javascript-d27b28459fad
+
+
+Walters, M (March 2021) Web Post Comment Section https://stackoverflow.com/questions/10211145/getting-current-date-and-time-in-javascript?fbclid=IwAR1819ozMNV7m0IWpl4TEzXpSML1FOy_J2unrv0QLnAIVyQlLugyLqcFwso
+
+(March 2021) https://www.w3schools.com/jsref/prop_element_lastelementchild.asp
+(March 2021) https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+
+API Anime Source https://jikan.docs.apiary.io/#reference/0/search/meta-request-example+schema
+
+Pap, S (March 2021) GitHub Source / https://github.com/sylviapap/chatbot/blob/master/index.js
+
+*/
 
 
 /* fetch statement used: it seaches for tv anime shows based on the genres inputed and returns the most highly rated shows through the api's 'order_by' and sort methods
