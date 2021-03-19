@@ -49,22 +49,23 @@ document.addEventListener("DOMContentLoaded", () => {
 /* 1) if no prompt exsists post intial prompt
     2) if there is a prompt callback function newPrompt()*/
 const prompt1 = "Hi there! Do you like to watch anime??";
-const lastPrompt = document.getElementById("promptMessages");
+const lastPrompt = document.getElementById("chat-box");
   function checkIfTheresAPrompt() {
-      if (lastPrompt.innerHTML.length === 0) {
+      if ( $('.lastPrompt').children().length == 0 ) {
         productOfInput = prompt1;
         addChatToChatBox(productOfInput);
       } 
   }
 
+
 function restart() {
-    console.log("restart");
-    $("#promptMessages").empty();
+  $("chat-box ").empty();
+  checkIfTheresAPrompt();
 }
 
 /* add both user-input & outputPrompts to chat-box */
 function addChatToChatBoxUser(inputReply) {
-    const userRepliesContainer = document.getElementById("userMessages");
+    const chatBox = document.getElementById("messages");
 
     /* add timeStamp to user messages*/
     let timestamp2 = document.createElement("div");
@@ -75,46 +76,50 @@ function addChatToChatBoxUser(inputReply) {
         .slice(0,5)
         .join(" ")}`;
     
- 
+    let userRepliesContainer = document.createElement("div");
+    userRepliesContainer.id = "userMessages";
+    userRepliesContainer.className = "chat-user-side";
+    userRepliesContainer.type = "message";
     let userInputDiv = document.createElement("div");
     userInputDiv.id = "guest";
     userInputDiv.className = "guest response";
     userInputDiv.innerHTML = `<span>${inputReply}</span>`;
     userRepliesContainer.appendChild(userInputDiv);
     userRepliesContainer.appendChild(timestamp2);
+    chatBox.appendChild(userRepliesContainer);
 
-    userRepliesContainer.scrollTop = userRepliesContainer.scrollHeight - userRepliesContainer.clientHeight; 
+    chatBox.scrollTop = chatBox.scrollHeight - chatBox.clientHeight; 
 }
-
-
 function addChatToChatBox(productOfInput) {
-    const promptRepliesContainer = document.getElementById("promptMessages");
-
-    let animeOutputDiv = document.createElement("div");
-    let animeOutputText = document.createElement("span");
+    const chatBox = document.getElementById("messages");
+    
 
     let timestamp = document.createElement("div");
     timestamp.className = "timestamp"
 
-    setTimeout(() => {
       timestamp.innerText = `${new Date()
         .toString()
         .split(" ")
         .slice(0,5)
         .join(" ")}`;
-      }, 500);
-
-    animeOutputDiv.id = "anime";
-    animeOutputDiv.appendChild(animeOutputText); 
-
-    setTimeout(() => {
-      animeOutputText.innerText = `${productOfInput}`;
-      }, 500);
     
-    promptRepliesContainer.appendChild(animeOutputDiv);
-    promptRepliesContainer.appendChild(timestamp);
+    let promptRepliesContainer = document.createElement("div");
+    promptRepliesContainer.id = "promptMessages";
+    promptRepliesContainer.className = "animeSide";
+    promptRepliesContainer.type = "message";
+    let animeDiv = document.createElement("div");
+    let animeText = document.createElement("span");
+    animeDiv.id = "anime";
+    animeDiv.appendChild(animeText); 
 
-    promptRepliesContainer.scrollTop = promptRepliesContainer.scrollHeight - promptRepliesContainer.clientHeight;
+    animeText.innerText = `${productOfInput}`;
+    
+    promptRepliesContainer.appendChild(animeDiv);
+    promptRepliesContainer.appendChild(timestamp);
+    chatBox.appendChild(promptRepliesContainer);
+    console.log("wheres my stuff");
+
+    chatBox.scrollTop = chatBox.scrollHeight - chatBox.clientHeight;
 }
 
 function outputPrompts(inputReply) {
@@ -134,7 +139,10 @@ function outputPrompts(inputReply) {
 
     if (text.match(/thank/gi)) {
       productOfInput = "You're welcome!" + genrePrompt[1];
-      addChatToChatBox(productOfInput);
+      setTimeout(() => {
+          addChatToChatBox(productOfInput);
+        }, 1500
+      )
     } else if (compare(userReplyObj, animePromptsObj, text)) {
         /* search for excat match in compare function*/
         productOfInput = compare(userReplyObj, animePromptsObj, text);
@@ -155,7 +163,6 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
     let userReplyFound = false;
 
     function findAnimeAmongGenre(genresArray) {
-        const array = genresArray;
         let results;
         let amimeArray = [];
         let returnAnime = [];
@@ -175,7 +182,10 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
             console.log(results, "hi");
             productOfInput ="Anime Option 1: '" + animeArray[0] + "'  Rating: " + animeArray[1] + "  Anime Option 2: '"  + animeArray[2] + "'  Rating: " + animeArray[3] + "";
             
-            addChatToChatBox(productOfInput);
+            setTimeout(() => {
+              addChatToChatBox(productOfInput);
+            }, 1500
+          )
         });
     }
 
@@ -188,7 +198,10 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                     productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + " " + animePromptsObj.genrePrompt;
 
                     userReplyFound = true;
-                    addChatToChatBox(productOfInput);
+                    setTimeout(() => {
+                      addChatToChatBox(productOfInput);
+                    }, 1500
+                  )
                     break;
                 }
             }
@@ -207,7 +220,10 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                     productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + animePromptsObj.genrePrompt;
                     
                     userReplyFound = true;
-                    addChatToChatBox(productOfInput);
+                    setTimeout(() => {
+                      addChatToChatBox(productOfInput);
+                    }, 1500
+                  )
                     break;
                 }
             }
@@ -374,7 +390,10 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
       /* if product of input does not match any expected input, return a confused prompt*/
      productOfInput = confusedPrompts[(Math.floor(Math.random() * 6))]
      console.log(productOfInput, "does not equal any expected input");
-     addChatToChatBox(productOfInput);
+     setTimeout(() => {
+      addChatToChatBox(productOfInput);
+    }, 1500
+  )
    } 
 }
 
@@ -383,6 +402,7 @@ Poopongpanit, B (March 2021) Web Post / https://levelup.gitconnected.com/how-to-
 Walters, M (March 2021) Web Post Comment Section https://stackoverflow.com/questions/10211145/getting-current-date-and-time-in-javascript?fbclid=IwAR1819ozMNV7m0IWpl4TEzXpSML1FOy_J2unrv0QLnAIVyQlLugyLqcFwso
 (March 2021) https://www.w3schools.com/jsref/prop_element_lastelementchild.asp
 (March 2021) https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+(March 2021) http://html-tuts.com/check-if-div-is-empty-html-element-has-children-tags/#:~:text=To%20check%20if%20div%20is,the%20length%20in%20tags%20also.
 API Anime Source https://jikan.docs.apiary.io/#reference/0/search/meta-request-example+schema
 Pap, S (March 2021) GitHub Source / https://github.com/sylviapap/chatbot/blob/master/index.js
 */

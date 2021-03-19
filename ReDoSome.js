@@ -176,8 +176,8 @@ function outputPrompts(inputReply) {
           let anime2a;
           return fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=genresArray&order_by=members&sort=desc/page=1`).then(res => res.json()).then(function (data) {
               results = data.results;
-              returnAnime.push(results[(Math.floor(Math.random() * 50))]);
-              returnAnime.push(results[(Math.floor(Math.random() * 50))]);
+              returnAnime.push(results[0]);
+              returnAnime.push(results[1]);
               anime1 = returnAnime[0].title;
               anime1a = returnAnime[0].score;
               anime2 = returnAnime[1].title;

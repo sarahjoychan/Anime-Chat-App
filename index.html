@@ -12,8 +12,7 @@
   </head>
   <body onload="checkIfTheresAPrompt()">
     <div class="container">
-      <div class="chat">
-        <div class="chat-header">
+        <div class="chat-header" id="gif-header">
           <img
             src="https://tenor.com/view/ninja-naruto-run-leap-gif-4574927.gif"
             alt="naruto leaping gif"
@@ -49,37 +48,26 @@
             alt="Gai Kakashi GIF"
           />
         </div>
-        <div class="chat-header">
+        <div class="chat-header" id="opening-welcome">
           <h3>HELLO ALL CURRENT AND SOON TO BE ANIME LOVERS!!!</h3>
           <input type="reset" id="reset" value="restart" onclick="restart()" />
         </div>
 
+
         <div class="chat-box" id="chat-box">
-          <div class="chat-myside">
-            <div class="message">
-              <div class="animeSide" id="promptMessages"></div>
-            </div>
-            <div class="sp"></div>
-          
+            <div class="messages" id="messages"></div>
 
-          <div class="chat-user-side" id="input-section">
-            <div class="sp"></div>
-            <div class="message" id="userMessages">
-              
-            </div>
-          </div>
+            <div class="chat-footer">
+                <div class="user">
+                  <input id="input" type="text" value="" autocomplete="off" /><button
+                    onclick="{submitMessage()}"
+                    id="sendButton">
+                    send
+                  </button>
+                </div>
+              </div>
         </div>
-
-        <div class="chat-footer">
-          <div class="user">
-            <input id="input" type="text" value="" autocomplete="off" /><button
-              onclick="{submitMessage()}"
-              id="sendButton"
-            >
-            </button>
-          </div>
-        </div>
-      </div>
+        
     </div>
   </body>
 </html>
