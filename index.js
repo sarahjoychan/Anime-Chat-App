@@ -14,16 +14,14 @@ const animePromptsObj = {happyPrompts:[
   ["Awesome!", "Fantastic!!!", "Yay!", "Wonderful!", "Awesome sauce!!"],
   ["Yippie!!", "That's what I like to hear!"]
 ], unhappyPrompts:[
-  ["Hearing that makes me mad. So lets get glad!"],
-  ["I'm just gonna pretend you didn't just say that."],
-  ["Dang bro!... You sure are a piece of work homie. Let's just pretend you didn't say that. Anyhoo "],
+  ["Hearing that makes me mad. So lets get glad!"], ["I'm just gonna pretend you didn't just say that."], ["Dang bro!... You sure are a piece of work homie. Let's just pretend you didn't say that. Anyhoo "]
   ["We'll you should!! That's why I'm here to help you change that!"]
   ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
-], genrePrompt:" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre seperated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"};
+], genrePrompt:" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"};
 
-const genrePrompt = [" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre seperated by both a comma then a space. Step 2: Press enter and let me work my magic ;)", " Now let's find you some MORE awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre seperated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"];
+const genrePrompt = [" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)", " Now let's find you some MORE awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"];
 
-const confusedPrompts = ["I'm confuesed.", "Bro.. I literally did'nt understand a single thing you just said.", "I think you have an error in your message.", "Are you sure your speaking english?", "Try again.", "Sorry bro I only speak english.. "];
+const confusedPrompts = ["I'm confused.", "Bro.. I literally didn't understand a single thing you just said.", "I think you have an error in your message.", "Are you sure you're speaking English?", "Try again.", "Sorry bro I only speak English.. "];
 
 const submitField = document.getElementById("input");
 const submitInput = document.getElementById("submit");
@@ -46,12 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-/* 1) if no prompt exsists post intial prompt
-    2) if there is a prompt callback function newPrompt()*/
+/* 1) If no prompt exists post initial prompt
+    2) If there is a prompt callback function newPrompt()*/
 const prompt1 = "Hi there! Do you like to watch anime??";
 const lastPrompt = document.getElementById("chat-box");
   function checkIfTheresAPrompt() {
+      console.log(lastPrompt, "hellow");
       if ( $('.lastPrompt').children().length == 0 ) {
+        console.log(lastPrompt, "my my");
         productOfInput = prompt1;
         addChatToChatBox(productOfInput);
       } 
@@ -59,15 +59,16 @@ const lastPrompt = document.getElementById("chat-box");
 
 
 function restart() {
+  console.log("restart");
   $("chat-box ").empty();
   checkIfTheresAPrompt();
 }
 
-/* add both user-input & outputPrompts to chat-box */
+/* Add both user-input & outputPrompts to chat-box */
 function addChatToChatBoxUser(inputReply) {
     const chatBox = document.getElementById("messages");
 
-    /* add timeStamp to user messages*/
+    /* Add timeStamp to user messages*/
     let timestamp2 = document.createElement("div");
     timestamp2.className = "timestamp2";
     timestamp2.innerText = `${new Date()
@@ -123,7 +124,7 @@ function addChatToChatBox(productOfInput) {
 }
 
 function outputPrompts(inputReply) {
-    /*make it so that you can compare the users-input with the array's of expected user-replies*/
+    /* Make it so that you can compare the users-input with the array's of expected user-replies*/
     let userReplyFound = false;
     let productOfInput;
     let text = inputReply.toLowerCase().replace(/\d/g, "").trim("");
@@ -144,7 +145,7 @@ function outputPrompts(inputReply) {
         }, 1500
       )
     } else if (compare(userReplyObj, animePromptsObj, text)) {
-        /* search for excat match in compare function*/
+        /* Search for exact match in comparing function*/
         productOfInput = compare(userReplyObj, animePromptsObj, text);
     }
     return addChatToChatBoxUser(inputReply); 
@@ -163,6 +164,7 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
     let userReplyFound = false;
 
     function findAnimeAmongGenre(genresArray) {
+        const array = genresArray;
         let results;
         let amimeArray = [];
         let returnAnime = [];
@@ -172,8 +174,8 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
         let anime2a;
         return fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=genresArray&order_by=members&sort=desc/page=1`).then(res => res.json()).then(function (data) {
             results = data.results;
-            returnAnime.push(results[(Math.floor(Math.random() * 50))]);
-            returnAnime.push(results[(Math.floor(Math.random() * 50))]);
+            returnAnime.push(results[0]);
+            returnAnime.push(results[1]);
             anime1 = returnAnime[0].title;
             anime1a = returnAnime[0].score;
             anime2 = returnAnime[1].title;
@@ -206,7 +208,7 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                 }
             }
             if (userReplyFound) {
-                /* stop outer loop iterating when/if reply is found */
+                /* Stop outer loop iterating when/if a reply is found */
                 break;
             } 
         }
@@ -233,12 +235,12 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
         }
     } 
     if (userReplyFound !== true) {
-        /* if userReplyFound still equals false, now check against genresArray*/
+        /* If userReplyFound still equals false, now check against genresArray*/
         let genres = string.split(" ");
         for (let j = 0; j < genreRepliesArray.length; j++) {
             for (let z = 0; z < genres.length; z++) {
                 /* check to see if any elements in genres(string) array do not equal any of the elements in genreReply array*/
-                /* with any elements that still remain in the genres(string) array; create a new array called genresArray that uses the map method with the callback function findgenre() */
+                /* with any elements that still remain in the genres(string) array; create a new array called genresArray that uses the map method with the callback function findGenre() */
                 if (genres[z] === genreRepliesArray[j]) {
                     let genresArray = genres.map(function findGenre(genreEntered) {
                         var genreNum = [];
@@ -381,13 +383,12 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                         userReplyFound = true;
                         let animeObjects = findAnimeAmongGenre(genresArray);
                         console.log(animeArray[1]);    
-                    } 
-                  //should update Document    
+                    }    
                 }  
             }                
     } 
     } if (userReplyFound !== true) {
-      /* if product of input does not match any expected input, return a confused prompt*/
+      /* If product of input does not match any expected input, return a confused prompt*/
      productOfInput = confusedPrompts[(Math.floor(Math.random() * 6))]
      console.log(productOfInput, "does not equal any expected input");
      setTimeout(() => {
@@ -408,9 +409,5 @@ Pap, S (March 2021) GitHub Source / https://github.com/sylviapap/chatbot/blob/ma
 */
 
 
-/* fetch statement used: it seaches for tv anime shows based on the genres inputed and returns the most highly rated shows through the api's 'order_by' and sort methods
+/* fetch statement used: it searches for tv anime shows based on the genres input and returns the most highly rated shows through the api's 'order_by' and sort methods
 `https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=1&order_by=members&sort=desc/page=1`*/
-
-/*setTimeout(() => {
-  addChatToChatBox(productOfInput);
-}, 500); */
