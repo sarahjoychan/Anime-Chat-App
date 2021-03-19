@@ -14,10 +14,10 @@ const animePromptsObj = {happyPrompts:[
   ["Awesome!", "Fantastic!!!", "Yay!", "Wonderful!", "Awesome sauce!!"],
   ["Yippie!!", "That's what I like to hear!"]
 ], unhappyPrompts:[
-  ["Hearing that makes me mad. So lets get glad!"], ["I'm just gonna pretend you didn't just say that."], ["Dang bro!... You sure are a piece of work homie. Let's just pretend you didn't say that. Anyhoo "]
-  ["We'll you should!! That's why I'm here to help you change that!"]
+  ["Hearing that makes me mad. So lets get glad!"], ["I'm just gonna pretend you didn't just say that."], ["Dang bro!... You sure are a piece of work homie. Let's just pretend you didn't say that. Anyhoo "],
+  ["We'll you should!! That's why I'm here to help you change that!"],
   ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
-], genrePrompt:" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"};
+], genrePrompt:[" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"]};
 
 const genrePrompt = [" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)", " Now let's find you some MORE awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"];
 
@@ -49,9 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const prompt1 = "Hi there! Do you like to watch anime??";
 const lastPrompt = document.getElementById("chat-box");
   function checkIfTheresAPrompt() {
-      console.log(lastPrompt, "hellow");
       if ( $('.lastPrompt').children().length == 0 ) {
-        console.log(lastPrompt, "my my");
         productOfInput = prompt1;
         addChatToChatBox(productOfInput);
       } 
@@ -118,7 +116,6 @@ function addChatToChatBox(productOfInput) {
     promptRepliesContainer.appendChild(animeDiv);
     promptRepliesContainer.appendChild(timestamp);
     chatBox.appendChild(promptRepliesContainer);
-    console.log("wheres my stuff");
 
     chatBox.scrollTop = chatBox.scrollHeight - chatBox.clientHeight;
 }
@@ -135,8 +132,7 @@ function outputPrompts(inputReply) {
     .replace(/please /g, "")
     .replace(/ ! /g, "")
     .replace(/r u/g, "are you")
-    .replace(/\?/g, '-');
-
+    .replace(/\?/g, '');
 
     if (text.match(/thank/gi)) {
       productOfInput = "You're welcome!" + genrePrompt[1];
@@ -181,7 +177,6 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
             anime2 = returnAnime[1].title;
             anime2a = returnAnime[1].score;
             animeArray.push(anime1, anime1a, anime2, anime2a);
-            console.log(results, "hi");
             productOfInput ="Anime Option 1: '" + animeArray[0] + "'  Rating: " + animeArray[1] + "  Anime Option 2: '"  + animeArray[2] + "'  Rating: " + animeArray[3] + "";
             
             setTimeout(() => {
@@ -382,7 +377,6 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                     if (genresArray.length !== 0) {
                         userReplyFound = true;
                         let animeObjects = findAnimeAmongGenre(genresArray);
-                        console.log(animeArray[1]);    
                     }    
                 }  
             }                
@@ -390,7 +384,6 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
     } if (userReplyFound !== true) {
       /* If product of input does not match any expected input, return a confused prompt*/
      productOfInput = confusedPrompts[(Math.floor(Math.random() * 6))]
-     console.log(productOfInput, "does not equal any expected input");
      setTimeout(() => {
       addChatToChatBox(productOfInput);
     }, 1500
