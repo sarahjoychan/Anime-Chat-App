@@ -64,6 +64,7 @@
     overflow-y: scroll;
     background-color:lightgreen;
     position: relative;
+    height: 75vh;
 }
 
 .chat-box #promptMessages {

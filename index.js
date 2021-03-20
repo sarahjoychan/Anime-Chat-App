@@ -34,7 +34,7 @@ function submitMessage() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+  $(document).ready(function() {
     submitField.addEventListener("keydown", function(e) {
       if (e.code === "Enter") {
         let inputReply = submitField.value;
@@ -55,69 +55,56 @@ const lastPrompt = document.getElementById("chat-box");
       } 
   }
 
-
 function restart() {
-  console.log("restart");
   $("chat-box ").empty();
   checkIfTheresAPrompt();
 }
 
-/* Add both user-input & outputPrompts to chat-box */
 function addChatToChatBoxUser(inputReply) {
-    const chatBox = document.getElementById("messages");
+  const $chatBox =$("#messages");
 
-    /* Add timeStamp to user messages*/
-    let timestamp2 = document.createElement("div");
-    timestamp2.className = "timestamp2";
-    timestamp2.innerText = `${new Date()
-        .toString()
-        .split(" ")
-        .slice(0,5)
-        .join(" ")}`;
+    var $timestamp2 = $("<div>").addClass("timestamp2");
+      $timestamp2.text(`${new Date()
+          .toString()
+          .split(" ")
+          .slice(0,5)
+          .join(" ")}`);
     
-    let userRepliesContainer = document.createElement("div");
-    userRepliesContainer.id = "userMessages";
-    userRepliesContainer.className = "chat-user-side";
-    userRepliesContainer.type = "message";
-    let userInputDiv = document.createElement("div");
-    userInputDiv.id = "guest";
-    userInputDiv.className = "guest response";
-    userInputDiv.innerHTML = `<span>${inputReply}</span>`;
-    userRepliesContainer.appendChild(userInputDiv);
-    userRepliesContainer.appendChild(timestamp2);
-    chatBox.appendChild(userRepliesContainer);
+    var $repliesContainer = $("<div>").addClass("chat-user-side").attr("id", 'userMessages');
+    var $userDiv = $("<div>").addClass("guest response").attr("id", 'guest');
 
-    chatBox.scrollTop = chatBox.scrollHeight - chatBox.clientHeight; 
+    $userDiv.html(`${inputReply}`);
+    $($repliesContainer).append($userDiv);
+    $($repliesContainer).append($timestamp2);
+    $($chatBox).append($repliesContainer);
+
+    $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight; 
 }
 function addChatToChatBox(productOfInput) {
-    const chatBox = document.getElementById("messages");
+    const $chatBox =$("#messages");
+
+    var $timestamp = $("<div>").addClass("timestamp");
+      $timestamp.text(`${new Date()
+          .toString()
+          .split(" ")
+          .slice(0,5)
+          .join(" ")}`);
     
+    var $promptContainer = $("<div>")
+    .addClass("animeSide")
+    .attr("id", 'promptMessages')
+    .attr("type", 'message');
 
-    let timestamp = document.createElement("div");
-    timestamp.className = "timestamp"
+    var $animeDiv = $("<div>").attr("id", 'anime');
+    var $animeText = $("<span>");
+    $animeText.html(`${productOfInput}`);
+    $($animeDiv).append($animeText);
 
-      timestamp.innerText = `${new Date()
-        .toString()
-        .split(" ")
-        .slice(0,5)
-        .join(" ")}`;
-    
-    let promptRepliesContainer = document.createElement("div");
-    promptRepliesContainer.id = "promptMessages";
-    promptRepliesContainer.className = "animeSide";
-    promptRepliesContainer.type = "message";
-    let animeDiv = document.createElement("div");
-    let animeText = document.createElement("span");
-    animeDiv.id = "anime";
-    animeDiv.appendChild(animeText); 
+    $($promptContainer).append($animeDiv);
+    $($promptContainer).append($timestamp);
+    $($chatBox).append($promptContainer);
 
-    animeText.innerText = `${productOfInput}`;
-    
-    promptRepliesContainer.appendChild(animeDiv);
-    promptRepliesContainer.appendChild(timestamp);
-    chatBox.appendChild(promptRepliesContainer);
-
-    chatBox.scrollTop = chatBox.scrollHeight - chatBox.clientHeight;
+    $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight;
 }
 
 function outputPrompts(inputReply) {
