@@ -17,47 +17,39 @@ const animePromptsObj = {happyPrompts:[
   ["Hearing that makes me mad. So lets get glad!"], ["I'm just gonna pretend you didn't just say that."], ["Dang bro!... You sure are a piece of work homie. Let's just pretend you didn't say that. Anyhoo "],
   ["We'll you should!! That's why I'm here to help you change that!"],
   ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
-], genrePrompt:[" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"]};
-
-const genrePrompt = [" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)", " Now let's find you some MORE awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"];
+], genrePrompt:[" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)", " Now let's find you some MORE awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"]};
 
 const confusedPrompts = ["I'm confused.", "Bro.. I literally didn't understand a single thing you just said.", "I think you have an error in your message.", "Are you sure you're speaking English?", "Try again.", "Sorry bro I only speak English.. "];
 
-const submitField = document.getElementById("input");
-const submitInput = document.getElementById("submit");
+const submitField = $("#input")[0];
+const lastPrompt = $("#chat-box") 
 
-function submitMessage() {
-    if (submitField.value) {
-        let inputReply = submitField.value;
-        submitField.value = "";
-        outputPrompts(inputReply);
-    }
+/*If no prompt exists post initial prompt*/
+function checkIfTheresAPrompt() {
+  if ($('.lastPrompt').children().length == 0) {
+    productOfInput = "Hi there! Do you like to watch anime??";
+    addChatToChatBox(productOfInput);
+  } 
 }
-
-  $(document).ready(function() {
-    submitField.addEventListener("keydown", function(e) {
-      if (e.code === "Enter") {
-        let inputReply = submitField.value;
-        submitField.value = "";
-        outputPrompts(inputReply);
-      } 
-    });
+$(document).ready(function() {
+  submitField.addEventListener("keydown", function(e) {
+    if (e.code === "Enter") {
+      let inputReply = submitField.value;
+      submitField.value = "";
+      outputPrompts(inputReply);
+    } 
   });
-
-/* 1) If no prompt exists post initial prompt
-    2) If there is a prompt callback function newPrompt()*/
-const prompt1 = "Hi there! Do you like to watch anime??";
-const lastPrompt = document.getElementById("chat-box");
-  function checkIfTheresAPrompt() {
-      if ( $('.lastPrompt').children().length == 0 ) {
-        productOfInput = prompt1;
-        addChatToChatBox(productOfInput);
-      } 
-  }
-
+});
 function restart() {
-  $("chat-box ").empty();
+  $("#messages").empty();
   checkIfTheresAPrompt();
+}
+function submitMessage() {
+  if (submitField.value) {
+      let inputReply = submitField.value;
+      submitField.value = "";
+      outputPrompts(inputReply);
+  }
 }
 
 function addChatToChatBoxUser(inputReply) {
@@ -77,7 +69,6 @@ function addChatToChatBoxUser(inputReply) {
     $($repliesContainer).append($userDiv);
     $($repliesContainer).append($timestamp2);
     $($chatBox).append($repliesContainer);
-
     $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight; 
 }
 function addChatToChatBox(productOfInput) {
@@ -103,13 +94,10 @@ function addChatToChatBox(productOfInput) {
     $($promptContainer).append($animeDiv);
     $($promptContainer).append($timestamp);
     $($chatBox).append($promptContainer);
-
     $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight;
 }
 
 function outputPrompts(inputReply) {
-    /* Make it so that you can compare the users-input with the array's of expected user-replies*/
-    let userReplyFound = false;
     let productOfInput;
     let text = inputReply.toLowerCase().replace(/\d/g, "").trim("");
     text = text
@@ -122,7 +110,7 @@ function outputPrompts(inputReply) {
     .replace(/\?/g, '');
 
     if (text.match(/thank/gi)) {
-      productOfInput = "You're welcome!" + genrePrompt[1];
+      productOfInput = "You're welcome!" + animePromptsObj.genrePrompt[1];
       setTimeout(() => {
           addChatToChatBox(productOfInput);
         }, 1500
@@ -136,29 +124,24 @@ function outputPrompts(inputReply) {
 
 
 function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmongGenre) {
-    let genresArray = [];
     let animeArray = [];
     let genreRepliesArray = userReplyObj.genreRepliesArray;
     let goodReply = userReplyObj.goodReplies;
     let badReply = userReplyObj.badReplies;
-    let unhappyPrompts = animePromptsObj.unhappyPrompts;
-    let happyPrompts = animePromptsObj.happyPrompts;
     let productOfInput;
     let userReplyFound = false;
 
     function findAnimeAmongGenre(genresArray) {
-        const array = genresArray;
         let results;
-        let amimeArray = [];
         let returnAnime = [];
         let anime1;
         let anime1a;
         let anime2;
         let anime2a;
-        return fetch(`https://api.jikan.moe/v3/search/anime?q=&page=1&tv&genre=genresArray&order_by=members&sort=desc/page=1`).then(res => res.json()).then(function (data) {
+        return fetch(`https://api.jikan.moe/v3/search/anime?q=&page=3&tv&genre=genresArray&order_by=members&sort=desc/page=3`).then(res => res.json()).then(function (data) {
             results = data.results;
-            returnAnime.push(results[0]);
-            returnAnime.push(results[1]);
+            returnAnime.push(results[Math.floor(Math.random() * results.length)]);
+            returnAnime.push(results[Math.floor(Math.random() * results.length)]);
             anime1 = returnAnime[0].title;
             anime1a = returnAnime[0].score;
             anime2 = returnAnime[1].title;
@@ -179,7 +162,7 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                 if (goodReply[i][x] === string) {
 
                     let animeReply = animePromptsObj.happyPrompts[i];
-                    productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + " " + animePromptsObj.genrePrompt;
+                    productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + " " + animePromptsObj.genrePrompt[0];
 
                     userReplyFound = true;
                     setTimeout(() => {
@@ -201,7 +184,7 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                 if (badReply[y][k] === string) {
 
                     let animeReply = animePromptsObj.unhappyPrompts[y];
-                    productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + animePromptsObj.genrePrompt;
+                    productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + animePromptsObj.genrePrompt[0];
                     
                     userReplyFound = true;
                     setTimeout(() => {
