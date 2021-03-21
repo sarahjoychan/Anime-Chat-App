@@ -369,6 +369,7 @@ Walters, M (March 2021) Web Post Comment Section https://stackoverflow.com/quest
 (March 2021) http://html-tuts.com/check-if-div-is-empty-html-element-has-children-tags/#:~:text=To%20check%20if%20div%20is,the%20length%20in%20tags%20also.
 API Anime Source https://jikan.docs.apiary.io/#reference/0/search/meta-request-example+schema
 Pap, S (March 2021) GitHub Source / https://github.com/sylviapap/chatbot/blob/master/index.js
+Bjerrome, T (March 2021) https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/
 */
 
 
