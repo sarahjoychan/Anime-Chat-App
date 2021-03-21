@@ -17,9 +17,17 @@ const animePromptsObj = {happyPrompts:[
   ["Hearing that makes me mad. So lets get glad!"], ["I'm just gonna pretend you didn't just say that."], ["Dang bro!... You sure are a piece of work homie. Let's just pretend you didn't say that. Anyhoo "],
   ["We'll you should!! That's why I'm here to help you change that!"],
   ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
-], genrePrompt:[" Let's find you some cool anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)", " Now let's find you some MORE awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"]};
+], genrePrompt:[" Now, I am going to find you some awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)", " Now let's find you some MORE awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"]};
 
 const confusedPrompts = ["I'm confused.", "Bro.. I literally didn't understand a single thing you just said.", "I think you have an error in your message.", "Are you sure you're speaking English?", "Try again.", "Sorry bro I only speak English.. "];
+
+const gifPrompts = {helloGif:[
+    ['https://tenor.com/view/kakashi-gif-19433121.gif'],['https://tenor.com/view/hi-hey-hello-wave-anime-gif-4608178.gif']
+  ], unhappyGif:[
+       ['https://tenor.com/view/naruto-sasuke-mad-anime-gif-11475477.gif'], ['https://tenor.com/view/zenitsu-demon-slayer-kimetsu-no-yaiba-manga-series-smh-gif-17682808.gif'], ['https://tenor.com/view/kimetsu-no-yaiba-demon-slayer-pig-angry-inosuke-hashibira-gif-14905892.gif'], ['https://tenor.com/view/sasuke-thinking-anime-naruto-gif-13593873.gif']
+  ], happyGif:[
+      ['https://tenor.com/view/inosuke-kimetsu-no-yaba-gif-15023737.gif'], ['https://tenor.com/view/demon-slayer-inosuke-amazed-sparkle-gif-15052588.gif'], ['https://tenor.com/view/gab-anime-dancing-happy-gif-8111637.gif']
+  ]}
 
 const submitField = $("#input")[0];
 const lastPrompt = $("#chat-box") 
@@ -27,8 +35,11 @@ const lastPrompt = $("#chat-box")
 /*If no prompt exists post initial prompt*/
 function checkIfTheresAPrompt() {
   if ($('.lastPrompt').children().length == 0) {
+    let gif = gifPrompts.helloGif[Math.floor(Math.random() * 2)];
+
     productOfInput = "Hi there! Do you like to watch anime??";
-    addChatToChatBox(productOfInput);
+    addChatToChatBox(productOfInput, gif);
+  
   } 
 }
 $(document).ready(function() {
@@ -53,6 +64,7 @@ function submitMessage() {
 }
 
 function addChatToChatBoxUser(inputReply) {
+    //  jQuery is used in this function.
   const $chatBox =$("#messages");
 
     var $timestamp2 = $("<div>").addClass("timestamp2");
@@ -71,7 +83,9 @@ function addChatToChatBoxUser(inputReply) {
     $($chatBox).append($repliesContainer);
     $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight; 
 }
-function addChatToChatBox(productOfInput) {
+
+function addChatToChatBox(productOfInput, gif) {
+  //  jQuery is used in this function.
     const $chatBox =$("#messages");
 
     var $timestamp = $("<div>").addClass("timestamp");
@@ -80,22 +94,26 @@ function addChatToChatBox(productOfInput) {
           .split(" ")
           .slice(0,5)
           .join(" ")}`);
-    
+
     var $promptContainer = $("<div>")
     .addClass("animeSide")
     .attr("id", 'promptMessages')
     .attr("type", 'message');
+    
+    if (gif) {
+      var $gifContainer = $("<img>").addClass('gif').attr("src", `${gif}`).attr("data-playon", "hover");
+      $($chatBox).append($gifContainer[0]);
+    }
+      var $animeDiv = $("<div>").attr("id", 'anime');
+      var $animeText = $("<span>");
+      $animeText.html(`${productOfInput}`);
+      $($animeDiv).append($animeText);
+      $($promptContainer).append($animeDiv);
+      $($promptContainer).append($timestamp);
+      $($chatBox).append($promptContainer);
+      $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight;
+} 
 
-    var $animeDiv = $("<div>").attr("id", 'anime');
-    var $animeText = $("<span>");
-    $animeText.html(`${productOfInput}`);
-    $($animeDiv).append($animeText);
-
-    $($promptContainer).append($animeDiv);
-    $($promptContainer).append($timestamp);
-    $($chatBox).append($promptContainer);
-    $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight;
-}
 
 function outputPrompts(inputReply) {
     let productOfInput;
@@ -111,8 +129,9 @@ function outputPrompts(inputReply) {
 
     if (text.match(/thank/gi)) {
       productOfInput = "You're welcome!" + animePromptsObj.genrePrompt[1];
+      let gif = gifPrompts.happyGif[Math.floor(Math.random() * 3)];
       setTimeout(() => {
-          addChatToChatBox(productOfInput);
+          addChatToChatBox(productOfInput, gif);
         }, 1500
       )
     } else if (compare(userReplyObj, animePromptsObj, text)) {
@@ -162,13 +181,17 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                 if (goodReply[i][x] === string) {
 
                     let animeReply = animePromptsObj.happyPrompts[i];
-                    productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + " " + animePromptsObj.genrePrompt[0];
+                    productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)];
+                    let gif = gifPrompts.happyGif[Math.floor(Math.random() * 3)];
 
                     userReplyFound = true;
                     setTimeout(() => {
+                      addChatToChatBox(productOfInput, gif);
+                    }, 1200)
+                    setTimeout(() => {
+                      productOfInput = " " + animePromptsObj.genrePrompt[0];
                       addChatToChatBox(productOfInput);
-                    }, 1500
-                  )
+                    }, 2000)
                     break;
                 }
             }
@@ -184,13 +207,18 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                 if (badReply[y][k] === string) {
 
                     let animeReply = animePromptsObj.unhappyPrompts[y];
-                    productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)] + animePromptsObj.genrePrompt[0];
+                    productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)];
                     
+                    let gif = gifPrompts.unhappyGif[Math.floor(Math.random() * 3)];
+
                     userReplyFound = true;
                     setTimeout(() => {
+                      addChatToChatBox(productOfInput, gif);
+                    }, 1200)
+                    setTimeout(() => {
+                      productOfInput = " " + animePromptsObj.genrePrompt[0];
                       addChatToChatBox(productOfInput);
-                    }, 1500
-                  )
+                    }, 2000)
                     break;
                 }
             }
@@ -370,6 +398,7 @@ Walters, M (March 2021) Web Post Comment Section https://stackoverflow.com/quest
 API Anime Source https://jikan.docs.apiary.io/#reference/0/search/meta-request-example+schema
 Pap, S (March 2021) GitHub Source / https://github.com/sylviapap/chatbot/blob/master/index.js
 Bjerrome, T (March 2021) https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/
+(March 2021) https://stackoverflow.com/questions/44086624/appendchild-is-not-a-function-when-using-jquery
 */
 
 
