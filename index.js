@@ -22,20 +22,22 @@ const animePromptsObj = {happyPrompts:[
 const confusedPrompts = ["I'm confused.", "Bro.. I literally didn't understand a single thing you just said.", "I think you have an error in your message.", "Are you sure you're speaking English?", "Try again.", "Sorry bro I only speak English.. "];
 
 const gifPrompts = {helloGif:[
-    ['https://tenor.com/view/kakashi-gif-19433121.gif'],['https://tenor.com/view/hi-hey-hello-wave-anime-gif-4608178.gif']
+    ['https://tenor.com/view/kakashi-gif-19433121.gif'],['https://tenor.com/view/hi-hey-hello-wave-anime-gif-4608178.gif'], ['https://tenor.com/view/the-promised-neverland-anime-emma-happy-hello-gif-17775955.gif'],['https://tenor.com/view/demon-slayer-nezuko-gif-14868285.gif'], ['https://tenor.com/view/jiraiya-popscicle-naruto-gif-3461599.gif'], ['https://tenor.com/view/kisumi-wave-hi-hello-free-gif-9416181.gif'], ['https://tenor.com/view/kakushigoto-kakushi-hime-anime-scenery-anime-gif-anime-gif-17667937.gif']
   ], unhappyGif:[
-       ['https://tenor.com/view/naruto-sasuke-mad-anime-gif-11475477.gif'], ['https://tenor.com/view/zenitsu-demon-slayer-kimetsu-no-yaiba-manga-series-smh-gif-17682808.gif'], ['https://tenor.com/view/kimetsu-no-yaiba-demon-slayer-pig-angry-inosuke-hashibira-gif-14905892.gif'], ['https://tenor.com/view/sasuke-thinking-anime-naruto-gif-13593873.gif']
+       ['https://tenor.com/view/naruto-sasuke-mad-anime-gif-11475477.gif'], ['https://tenor.com/view/zenitsu-demon-slayer-kimetsu-no-yaiba-manga-series-smh-gif-17682808.gif'], ['https://tenor.com/view/kimetsu-no-yaiba-demon-slayer-pig-angry-inosuke-hashibira-gif-14905892.gif'], ['https://tenor.com/view/sasuke-thinking-anime-naruto-gif-13593873.gif'], ['https://tenor.com/view/emma-the-promised-neverland-yakusoku-gif-18317920.gif'], ['https://tenor.com/view/chichi-mad-angry-dragonballs-anime-gif-11397705.gif'], ['https://tenor.com/view/vegeta-screaming-dragon-ball-angry-mad-gif-16799801.gif'], ['https://tenor.com/view/attack-on-titan-gif-5470804.gif'], ['https://tenor.com/view/demon-slayer-anime-gif-19525388.gif'], ['https://tenor.com/view/naruto-tsunade-mad-gif-14374991.gif']
   ], happyGif:[
-      ['https://tenor.com/view/inosuke-kimetsu-no-yaba-gif-15023737.gif'], ['https://tenor.com/view/demon-slayer-inosuke-amazed-sparkle-gif-15052588.gif'], ['https://tenor.com/view/gab-anime-dancing-happy-gif-8111637.gif']
+      ['https://tenor.com/view/inosuke-kimetsu-no-yaba-gif-15023737.gif'], ['https://tenor.com/view/demon-slayer-inosuke-amazed-sparkle-gif-15052588.gif'], ['https://tenor.com/view/gab-anime-dancing-happy-gif-8111637.gif'], ['https://tenor.com/view/happy-japanese-anime-excited-gif-9596035.gif'], ['https://tenor.com/view/happy-dragon-ball-z-gohan-dende-excited-gif-20827628.gif'], ['https://tenor.com/view/shinobu-kocho-happy-demon-slayer-anime-gif-16843136.gif'], ['https://tenor.com/view/happy-anime-gif-19923838.gif'], ['https://tenor.com/view/happy-anime-sparkle-gif-6014343.gif'], ['https://tenor.com/view/peace-smile-cute-anime-happy-gif-17511935.gif']
   ]}
 
+const $bottom = $('#chat-footer'); 
+const $chatBox = $("#messages");
 const submitField = $("#input")[0];
-const lastPrompt = $("#chat-box") 
+const lastPrompt = $("#chat-box"); 
 
 /*If no prompt exists post initial prompt*/
 function checkIfTheresAPrompt() {
   if ($('.lastPrompt').children().length == 0) {
-    let gif = gifPrompts.helloGif[Math.floor(Math.random() * 2)];
+    let gif = gifPrompts.helloGif[Math.floor(Math.random() * 7)];
 
     productOfInput = "Hi there! Do you like to watch anime??";
     addChatToChatBox(productOfInput, gif);
@@ -48,6 +50,7 @@ $(document).ready(function() {
       let inputReply = submitField.value;
       submitField.value = "";
       outputPrompts(inputReply);
+      $chatBox.stop().animate({scrollTop:$chatBox[0].scrollHeight}, 1000);
     } 
   });
 });
@@ -60,12 +63,12 @@ function submitMessage() {
       let inputReply = submitField.value;
       submitField.value = "";
       outputPrompts(inputReply);
+      $chatBox.stop().animate({scrollTop:$chatBox[0].scrollHeight}, 1000);
   }
 }
 
 function addChatToChatBoxUser(inputReply) {
     //  jQuery is used in this function.
-  const $chatBox =$("#messages");
 
     var $timestamp2 = $("<div>").addClass("timestamp2");
       $timestamp2.text(`${new Date()
@@ -81,12 +84,14 @@ function addChatToChatBoxUser(inputReply) {
     $($repliesContainer).append($userDiv);
     $($repliesContainer).append($timestamp2);
     $($chatBox).append($repliesContainer);
+
+    $chatBox[0].lastChild.scrollIntoView(true);
     $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight; 
+    
 }
 
 function addChatToChatBox(productOfInput, gif) {
   //  jQuery is used in this function.
-    const $chatBox =$("#messages");
 
     var $timestamp = $("<div>").addClass("timestamp");
       $timestamp.text(`${new Date()
@@ -111,8 +116,15 @@ function addChatToChatBox(productOfInput, gif) {
       $($promptContainer).append($animeDiv);
       $($promptContainer).append($timestamp);
       $($chatBox).append($promptContainer);
+
+      $chatBox[0].lastChild.scrollIntoView(true);
+
       $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight;
+       
+
+        
 } 
+
 
 
 function outputPrompts(inputReply) {
@@ -129,7 +141,7 @@ function outputPrompts(inputReply) {
 
     if (text.match(/thank/gi)) {
       productOfInput = "You're welcome!" + animePromptsObj.genrePrompt[1];
-      let gif = gifPrompts.happyGif[Math.floor(Math.random() * 3)];
+      let gif = gifPrompts.happyGif[Math.floor(Math.random() * 10)];
       setTimeout(() => {
           addChatToChatBox(productOfInput, gif);
         }, 1500
@@ -182,7 +194,7 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
 
                     let animeReply = animePromptsObj.happyPrompts[i];
                     productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)];
-                    let gif = gifPrompts.happyGif[Math.floor(Math.random() * 3)];
+                    let gif = gifPrompts.happyGif[Math.floor(Math.random() * 10)];
 
                     userReplyFound = true;
                     setTimeout(() => {
@@ -209,7 +221,7 @@ function compare(userReplyObj, animePromptsObj, string, _findGenre, findAnimeAmo
                     let animeReply = animePromptsObj.unhappyPrompts[y];
                     productOfInput = animeReply[Math.floor(Math.random() * animeReply.length)];
                     
-                    let gif = gifPrompts.unhappyGif[Math.floor(Math.random() * 3)];
+                    let gif = gifPrompts.unhappyGif[Math.floor(Math.random() * 11)];
 
                     userReplyFound = true;
                     setTimeout(() => {

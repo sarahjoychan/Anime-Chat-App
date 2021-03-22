@@ -6,12 +6,11 @@
 .container {
     width: auto;
     margin: auto;
-}
-.chat {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
+
 
 .chat-header {
     display: flex;
@@ -43,7 +42,7 @@
     font-size: 175%;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
-.chat-header #reset{
+#reset{
     margin-right: 0%;
     align-items:stretch;
     width: 100px;
@@ -58,28 +57,31 @@
   border: solid white 1px;
 }
 
-.chat-box {
+.chat-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: paleturquoise;
+    position: relative;
+    cursor: pointer;
+    width: auto;
+  }
+.chat-box .messages {
     flex: 1;
     background: url('../');
     background-attachment: fixed;
     overflow-y: scroll;
     background-color:lightgreen;
+    position: relative;
+    height: 75vh;
 }
 
-.chat-box #anime {
-    max-width: 350px;
-    min-width: relative;
-    max-height: relative;
-    padding: auto;
-    border-radius: auto;
-    margin-right: auto;
-    display: relative;
-    font-family:'Arial Narrow';
-    size: relative;
-}
 .chat-box #promptMessages {
+    margin-left: 30px;
+    border-radius: 10px;
+    max-width: 300px;
     padding: auto;
-    border-radius: auto;
     margin-right: auto;
     display: relative;
     font-family:'Arial Narrow';
@@ -87,28 +89,17 @@
     clear: both;
     margin-left: 30px;
     margin-bottom: 25px;
-}
-.chat-box #guest {
-    max-width: 350px;
-    max-height: relative;
-    background-color:whitesmoke;
-    padding: auto;
-    border-radius: auto;
-    margin-left: auto;
-    display: relative;
-    font-family:'Arial Narrow';
-    size: relative;
-
+    width: 100%;
 }
 .chat-box .gif {
-  margin-left: 30px;
-  border-radius: 10px;
-  max-width: 300px;
-  max-height: relative;
-  margin-right: auto;
-  display: relative;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  animation: forwardIn forwards 0.25s;
+    margin-left: 30px;
+    border-radius: 10px;
+    max-width: 300px;
+    max-height: relative;
+    margin-right: auto;
+    display: relative;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    animation: forwardIn forwards 0.25s;
 }
 
 .chat-user-side {
@@ -125,37 +116,6 @@
     font-size: 12px;
     font-weight: 700px;
 }
-.chat-footer {
-    justify-content: centered-right;
-    position: relative;
-    cursor: pointer;
-    height: min-content;
-    /* padding-bottom: 20px; */
-    background-color:paleturquoise;
-}
-.chat-footer textarea {
-    position: static;
-    display: ruby-text-container;
-    flex: 1;
-    width: 75%;
-    height: 30px;
-    border-radius: 80px;
-    margin-top: 15%;
-    padding: 10px;
-    outline: none;
-    font-size: 19px;
-    border: 2px solid #ccc;
-    color: #555;
-    resize: none;
-}
-.chat-footer .submit{
-    display: block;
-    height: 25px;
-    width: 25px;
-    position: relative;
-    margin-left: 85%;
-    font-weight: normal;
-}
 
 *::-webkit-scrollbar {
 	width: 5px;
@@ -165,30 +125,42 @@
 }
 
 #guest {
-  margin-top: 30px;
-  border-radius: 5px;
-  text-align: center;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  animation: forwardIn forwards 0.25s;
-  margin-right: 35px;
+    max-width: 300px;
+    max-height: relative;       
+    background-color:whitesmoke;
+    padding: auto;
+    border-radius: auto;
+    margin-left: auto;
+    display: relative;
+    font-family:'Arial Narrow';
+    size: relative;
+    margin-top: 30px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    animation: forwardIn forwards 0.25s;
+    margin-right: 35px;
 }
 
 #anime {
-  margin-top: 30px;
-  background-color: paleturquoise;
-  /* border: solid 0.25px rgba(0, 0, 0, 0.219); */
-  border-radius: 5px;
-  text-align: center;
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  animation: forwardIn forwards 0.25s;
+    max-width: 300px;
+    min-width: relative;
+    max-height: relative;
+    padding: auto;
+    border-radius: auto;
+    margin-right: auto;
+    display: relative;
+    font-family:'Arial Narrow';
+    size: relative;
+    margin-top: 30px;
+    background-color: paleturquoise;
+    /* border: solid 0.25px rgba(0, 0, 0, 0.219); */
+    border-radius: 5px;
+    text-align: center;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    animation: forwardIn forwards 0.25s;
 }
-
-
-#promptMessages {
-  width: 100%;
-}
-
 
 @keyframes forwardIn {
   0% {
@@ -200,11 +172,9 @@
   }
 }
 
-
-
 .timestamp {
   animation: forwardIn forwards 0.25s;
-  margin-left: 105px;
+  margin-left: 69px;
   font-size: small;
   color: rgba(82, 82, 82, 0.767);
   font-weight: 700;
@@ -213,23 +183,13 @@
 .timestamp2 {
   animation: forwardIn forwards 0.25s;
   float: right;
-  margin-right: 125px;
+  margin-right: 100px;
   font-size: small;
   color: rgba(82, 82, 82, 0.767);
   font-weight: 700;
 
 }
 
-.message {
-  position: fixed;
-  bottom: 100px;
-  width: 1085px;
-
-}
-
-#promptMessages {
-  width: 100%;
-}
 
 .chat-header {
   z-index: 1;
@@ -242,13 +202,29 @@
   font-size: x-large;
   width: 500px;
 }
-
-.chat-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
+.chat-footer textarea {
+    position: fixed;
+    display: ruby-text-container;
+    flex: 1;
+    width: 75%;
+    height: 30px;
+    border-radius: 80px;
+    margin-top: 15%;
+    padding: 10px;
+    outline: none;
+    font-size: 19px;
+    border: 2px solid #ccc;
+    color: #555;
 }
+.chat-footer .submit{
+    display: block;
+    height: 25px;
+    width: 25px;
+    position: relative;
+    margin-left: 85%;
+    font-weight: normal;
+}
+
 
 #sendButton {
   height: 40px;
@@ -268,7 +244,6 @@
   justify-content: center;
   align-items: center;
 }
-
 
 /*
 Source Code:
