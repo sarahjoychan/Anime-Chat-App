@@ -15,9 +15,9 @@ const animePromptsObj = {happyPrompts:[
   ["Yippie!!", "That's what I like to hear!"]
 ], unhappyPrompts:[
   ["Hearing that makes me mad. So lets get glad!"], ["I'm just gonna pretend you didn't just say that."], ["Dang bro!... You sure are a piece of work homie. Let's just pretend you didn't say that. Anyhoo "],
-  ["We'll you should!! That's why I'm here to help you change that!"],
+  ["Well you should!! That's why I'm here to help you change that!"],
   ["Do you understand the words that are coming out of my mouth?!? You know what, let's just get on with this"]
-], genrePrompt:[" Now, I am going to find you some awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)", " Now let's find you some MORE awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"]};
+], genrePrompt:[" Now I am going to find you some awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)", " Now let's find you some MORE awesome anime to watch! Step 1: Enter up to 3 of your favorite genres with each genre separated by both a comma then a space. Step 2: Press enter and let me work my magic ;)"]};
 
 const confusedPrompts = ["I'm confused.", "Bro.. I literally didn't understand a single thing you just said.", "I think you have an error in your message.", "Are you sure you're speaking English?", "Try again.", "Sorry bro I only speak English.. "];
 
@@ -65,7 +65,6 @@ function submitMessage() {
 }
 
 function addChatToChatBoxUser(inputReply) {
-    //  jQuery is used in this function.
 
     var $timestamp2 = $("<div>").addClass("timestamp2");
       $timestamp2.text(`${new Date()
@@ -87,8 +86,6 @@ function addChatToChatBoxUser(inputReply) {
 }
 
 function addChatToChatBox(productOfInput, gif) {
-  //  jQuery is used in this function.
-
     var $timestamp = $("<div>").addClass("timestamp");
       $timestamp.text(`${new Date()
           .toString()
