@@ -57,7 +57,17 @@
   border: solid white 1px;
 }
 
-.chat-box {
+.chat-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: paleturquoise;
+    position: relative;
+    cursor: pointer;
+    width: auto;
+  }
+.chat-box .messages {
     flex: 1;
     background: url('../');
     background-attachment: fixed;
@@ -68,8 +78,10 @@
 }
 
 .chat-box #promptMessages {
+    margin-left: 30px;
+    border-radius: 10px;
+    max-width: 300px;
     padding: auto;
-    border-radius: auto;
     margin-right: auto;
     display: relative;
     font-family:'Arial Narrow';
@@ -113,7 +125,7 @@
 }
 
 #guest {
-    max-width: 350px;
+    max-width: 300px;
     max-height: relative;       
     background-color:whitesmoke;
     padding: auto;
@@ -131,7 +143,7 @@
 }
 
 #anime {
-    max-width: 350px;
+    max-width: 300px;
     min-width: relative;
     max-height: relative;
     padding: auto;
@@ -162,7 +174,7 @@
 
 .timestamp {
   animation: forwardIn forwards 0.25s;
-  margin-left: 105px;
+  margin-left: 69px;
   font-size: small;
   color: rgba(82, 82, 82, 0.767);
   font-weight: 700;
@@ -171,7 +183,7 @@
 .timestamp2 {
   animation: forwardIn forwards 0.25s;
   float: right;
-  margin-right: 125px;
+  margin-right: 100px;
   font-size: small;
   color: rgba(82, 82, 82, 0.767);
   font-weight: 700;
@@ -189,17 +201,6 @@
 #input {
   font-size: x-large;
   width: 500px;
-}
-
-.chat-footer {
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  background-color: paleturquoise;
-  position: relative;
-  cursor: pointer;
 }
 .chat-footer textarea {
     position: fixed;
