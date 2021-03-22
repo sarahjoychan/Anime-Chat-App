@@ -29,7 +29,6 @@ const gifPrompts = {helloGif:[
       ['https://tenor.com/view/inosuke-kimetsu-no-yaba-gif-15023737.gif'], ['https://tenor.com/view/demon-slayer-inosuke-amazed-sparkle-gif-15052588.gif'], ['https://tenor.com/view/gab-anime-dancing-happy-gif-8111637.gif'], ['https://tenor.com/view/happy-japanese-anime-excited-gif-9596035.gif'], ['https://tenor.com/view/happy-dragon-ball-z-gohan-dende-excited-gif-20827628.gif'], ['https://tenor.com/view/shinobu-kocho-happy-demon-slayer-anime-gif-16843136.gif'], ['https://tenor.com/view/happy-anime-gif-19923838.gif'], ['https://tenor.com/view/happy-anime-sparkle-gif-6014343.gif'], ['https://tenor.com/view/peace-smile-cute-anime-happy-gif-17511935.gif']
   ]}
 
-const $bottom = $('#chat-footer'); 
 const $chatBox = $("#messages");
 const submitField = $("#input")[0];
 const lastPrompt = $("#chat-box"); 
@@ -50,7 +49,6 @@ $(document).ready(function() {
       let inputReply = submitField.value;
       submitField.value = "";
       outputPrompts(inputReply);
-      $chatBox.stop().animate({scrollTop:$chatBox[0].scrollHeight}, 1000);
     } 
   });
 });
@@ -63,7 +61,6 @@ function submitMessage() {
       let inputReply = submitField.value;
       submitField.value = "";
       outputPrompts(inputReply);
-      $chatBox.stop().animate({scrollTop:$chatBox[0].scrollHeight}, 1000);
   }
 }
 
@@ -87,7 +84,6 @@ function addChatToChatBoxUser(inputReply) {
 
     $chatBox[0].lastChild.scrollIntoView(true);
     $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight; 
-    
 }
 
 function addChatToChatBox(productOfInput, gif) {
@@ -118,11 +114,7 @@ function addChatToChatBox(productOfInput, gif) {
       $($chatBox).append($promptContainer);
 
       $chatBox[0].lastChild.scrollIntoView(true);
-
-      $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight;
-       
-
-        
+      $chatBox.scrollTop = $chatBox.scrollHeight - $chatBox.clientHeight;   
 } 
 
 
