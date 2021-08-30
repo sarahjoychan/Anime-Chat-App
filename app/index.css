@@ -1,0 +1,206 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.container {
+  width: auto;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.titles {
+  background-color: #9599e2;
+  background-image: linear-gradient(225deg, #9599e2 0%, #8bc6ec 33%, #85FFBD 66%, #FFFB7D 100%);
+}
+
+.chat-header {
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+  align-items: center;
+  height: 75px;
+  position: centered;
+  z-index: 1;
+  justify-content: center;
+}
+.chat-header img {
+  max-height: 92px;
+  margin-left: 0%;
+  border-radius: 3px;
+  display: flex;
+  padding: 2px;
+}
+.chat-header span {
+  display: flex;
+}
+.chat-header h2 {
+  align-items: center;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 315%;
+  border-radius: 5px;
+  font-family: "Concert One";
+}
+
+.chat-box .messages {
+  flex: 1;
+  background: url('../');
+  background-attachment: fixed;
+  overflow-y: scroll;
+  background-image:url('https://wallpapercave.com/wp/wp5393093.jpg');
+  position: relative;
+  height: 75vh;
+  box-shadow: 0 30px 40px rgba(0,0,0,.1);
+}
+
+
+.chat-box #botMessages {
+  margin-left: 30px;
+  border-radius: 10px;
+  max-width: 300px;
+  padding: auto;
+  margin-right: auto;
+  display: relative;
+  font-family:"Cantarell";
+  size: relative;
+  clear: both;
+  margin-left: 30px;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.chat-user-side {
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+.chat-box .timeStamp span {
+  font-size: 12px;
+  font-weight: 700px;
+  
+}
+
+*::-webkit-scrollbar {
+	width: 5px;
+}
+*::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+.messages {
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: "Cantarell";
+  font-weight: 700;
+  padding-top: 5%;
+}
+
+.bubble {
+  position: relative;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 272px;
+}
+
+.user {
+  align-self: flex-end;
+  border: 1px solid #4a5186;
+  background-color: #fffb7d60;
+  box-shadow: 4px 8px 12px -4px #081150;
+}
+
+.bot {
+  align-self: flex-start;
+  border: 1px solid #4a5186;
+  background-color: #85ffbe6b;
+  box-shadow: 4px 8px 12px -4px #6169a5;
+}
+
+.timestamp {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 6px;
+  margin-bottom: 15%;  
+  animation: forwardIn forwards 0.25s;
+  font-size: small;
+  color: rgba(3, 7, 6, 0.897);
+  font-weight: 700;
+}
+.chat-box .gif {
+  align-self: flex-start;
+  padding: 5px;
+  border-radius: 10px;
+  max-width: 300px;
+  margin-right: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  animation: forwardIn forwards 0.25s;
+}
+
+.chat-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: #9599e2;
+  background-image: linear-gradient(225deg, #FFFB7D 0%, #85FFBD 33%, #8bc6ec 66%, #9599e2 100%);
+  position: relative;
+  cursor: pointer;
+  width: auto;
+}
+
+.chat-footer .submit {
+  display: block;
+  height: 25px;
+  width: 25px;
+  position: relative;
+  margin-left: 85%;
+  font-weight: normal;
+}
+.chat-footer textarea {
+  position: fixed;
+  display: ruby-text-container;
+  flex: 1;
+  width: 75%;
+  height: 30px;
+  border-radius: 80px;
+  margin-top: 15%;
+  padding: 10px;
+  outline: none;
+  font-size: 19px;
+  border: 2px solid #ccc;
+  color: #555;
+}
+
+#input {
+  background-image: none;
+  background-color: white;
+  border-color: whitesmoke;
+  border-radius: 15px;
+  font-family: "Cantarell";
+  font-weight: 700;
+  height: 60px;
+  width: 300px;
+}
+
+#sendButton {
+  border-radius: 10px;
+  border-color: whitesmoke;
+  margin-left: 5px;
+  height: 40px;
+  width: 100px;
+  font-family: "Cantarell";
+  font-weight: 700;
+  color: darkgray;
+}
+#sendButton::hover {
+  font-family: "Cantarell";
+  border: solid white 1px;
+  background-color: rgb(105, 207, 105);
+}
+

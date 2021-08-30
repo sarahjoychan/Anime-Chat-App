@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Concert+One"/>
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Cantarell"/>
+    
+    <script defer src="dataObj.js"></script>
+    <script defer src="index.js"></script>
+    <title>Happy Anime Chat</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body onload="checkIfTheresAPrompt()">
+
+    <div class="container">
+    <div class = "titles">
+      <div class="chat-header" id="gif-header">
+        <img
+          src="https://tenor.com/view/hunterxhunter-gif-5622117.gif"
+          alt="naruto leaping gif"
+        />
+        <span></span>
+        <img
+          src="https://tenor.com/view/sjon-demon-slayer-sjon-running-around-gif-14546029.gif"
+          alt="I love anime gif"
+        />
+        <span></span>
+        <img
+          src="https://tenor.com/view/wow-howls-moving-castle-anime-sophie-hatter-turnip-head-gif-17858166.gif"
+          alt="I love anime gif"
+        />
+        
+        <span></span>
+        <img
+          src="https://tenor.com/view/squirtle-pikachu-pokemon-dancing-happy-gif-15646320.gif"
+          alt="pokemon dancing gif"
+        />
+        <span></span>
+        <img
+          src="https://tenor.com/view/black-clover-opening12-gif-20143013.gif"
+          alt="anime dancing gif"
+        />
+        <span></span>
+        <img
+          src="https://tenor.com/view/winry-full-metal-alchemist-fma-dancing-anime-gif-17776113.gif"
+          alt="Winry Full Metal Alchemist GIF"
+        />
+        <span></span>
+        <img
+          src="https://tenor.com/view/dancinha-charmy-black-clover-anime-gif-11658866.gif"
+          alt="Naruto & Rock Lee eating ramen gif"
+        />
+        <span></span>
+        <img
+          src="https://tenor.com/view/gai-kakashi-gif-18710613.gif"
+          alt="Gai Kakashi GIF"
+        />
+        <span></span>
+        <img
+          src="https://tenor.com/view/spirited-away-celebrate-spiritedaway-gif-4582076.gif"
+          alt=
+        />
+      </div>
+      <div class="chat-header" id="opening-welcome">
+        <h2>-Happy Anime Chat-</h2>
+      </div>
+    </div>
+
+    
+      <div class="chat-box" id="chat-box">
+        <div class="messages" id="messages"></div>
+        
+        <div class="chat-footer">
+          <div>
+            <input id="input" type="text" value="" autocomplete="off"/>
+            <button onclick="{submitMessage()}" id="sendButton">Send</button> 
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+</html>  
